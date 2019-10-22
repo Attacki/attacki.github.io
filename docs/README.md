@@ -12,11 +12,6 @@ description: "可怜而可爱的我啊，努力吧~"
 - **2019/10/18：**[使用Canvas画一个简单的折线图](/2019/10/18/)
 - **2019/10/17：**[使用vuepress搭建网站简易教程](/2019/10/17/)
 
+## Faith All Life
 
-<script>
-module.export = {
-    mounted(){
-        document.body.style.height = document.documentElement.clientHeight + 'px'
-    }
-}    
-</script>
+- **2019/10/23：**[战争记录](/2019/10/23/)
