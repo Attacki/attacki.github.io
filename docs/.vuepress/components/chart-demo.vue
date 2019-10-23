@@ -9,7 +9,7 @@
 class MineChart{
     constructor(el,options){
         if(!document.createElement('canvas').getContext){
-            console.log('不支持canvas')
+            console.log('您的浏览器不支持canvas')
             return
         };
         this.state = {
@@ -22,7 +22,8 @@ class MineChart{
                     x:0.9,
                     y:0.75
                 } // 坐标系
-            }
+            },
+            timer:''
         };
 
         this.state.options.y = options.y
@@ -95,7 +96,7 @@ class MineChart{
             context.putImageData(this.state.imageData,0,0);
             context.save();
             context.lineWidth = .5;
-            context.strokeStyle = '#dadada';
+            context.strokeStyle = '#666666';
             context.beginPath();
             var now_pos = (x/this.state.x_step).toFixed(0);
             if(now_pos > this.state.options.process_y.length -1 ){ //
@@ -152,7 +153,7 @@ class MineChart{
         state.y_step = parseInt((state.Origin_height/800)*100);
         let num_W = '',
             grap = '';
-        context.strokeStyle = '#dadada';
+        context.strokeStyle = '#666666';
         context.lineWidth = 0.5;
         context.fillStyle = '#666666';
         var rate = state.dom.parentElement.clientWidth/800;
@@ -237,7 +238,7 @@ class MineChart{
         return {pA:{x:pAx,y:pAy},pB:{x:pBx,y:pBy}}
     }
 
-    hanler(){
+    handler(){
         var that = this,
             state = this.state,
             point= state.options.process_y;
@@ -261,11 +262,11 @@ class MineChart{
     }
 
     pointer(){
-        this.hanler().then(
+        this.handler().then(
             ()=>{ //继续
                 this.pointer();
             },
-            ()=>{//停止
+            ()=>{ //停止
                 this.mouseMove();
                 console.log('绘制完成')
             }
@@ -274,13 +275,18 @@ class MineChart{
 };
 
 export default {
+    data(){
+        return{
+            chart:''
+        }
+    },
     mounted(){
         var dom = document.getElementById('chart');
         var options = {
             x:[1,2,3,4,5,6,7],
             y:[60.12,123,123,1064,800,790,300,740,350,650,190,420,340,250,450,240,320,200,100,132,454,621,500,132,454,121],
         };
-        var chart = new MineChart(dom,options);
+        this.chart = new MineChart(dom,options);
     }
 }
 </script>
@@ -293,7 +299,6 @@ export default {
     text-align: center
 #chart
     margin: 0
-    background: rgb(255, 255, 255)
     display: none
     
 </style>

@@ -6,8 +6,19 @@ export default ({
 }) => {
     // ...使用应用程序级别的增强功能
     options.mounted=()=>{
-        document.body.style.height = document.documentElement.clientHeight + 'px'
+        window.addEventListener('resize',()=>{
+            document.body.style.minHeight = document.documentElement.clientHeight + 'px'
+        })
+        if(document.createEvent) {
+            var event = document.createEvent("HTMLEvents");
+            event.initEvent("resize", true, true);
+            window.dispatchEvent(event);
+        } else if(document.createEventObject) {
+            window.fireEvent("onresize");
+        }
     }
-    console.log(router)
-    console.log(siteData)
+    router.beforeEach((to, from, next) => {
+        window.onresize = null
+        next()
+    })
 }
