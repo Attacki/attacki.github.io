@@ -17,8 +17,4 @@ export default ({
             window.fireEvent("onresize");
         }
     }
-    router.beforeEach((to, from, next) => {
-        window.onresize = null
-        next()
-    })
 }
