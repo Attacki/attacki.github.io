@@ -11,6 +11,9 @@ module.exports = {
 	},
 	themeConfig: {
 		lastUpdated: 'Last Updated', // string | boolean
-		smoothScroll: true
+		smoothScroll: true,
+		nav: [
+			{ text: '标签', link: '/tag/' },
+		]
 	}
 }
