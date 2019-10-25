@@ -5,7 +5,7 @@ meta:
     - content: '记录的地方，希望能记下每天发生的有意义的事'
     - name: 'hope'
     - content: '我想承认自己，变成想成为的样子，就算卑微，但是伟大！'
-description: "可怜而可爱的我啊，努力吧~"
+description: "不轻易发怒的，胜过勇士，制服己心的，强如取城。"
 sidebar: auto
 ---
 
