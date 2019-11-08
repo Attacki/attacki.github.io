@@ -1,5 +1,5 @@
 module.exports = {
-    base:'//mos.531708741188321284617.maoyuncloud.cn/dist/',
+    base:'/',
 	title: '不羁',
 	port:'8082',
 	plugins: ['@vuepress/nprogress','@vuepress/back-to-top'],
