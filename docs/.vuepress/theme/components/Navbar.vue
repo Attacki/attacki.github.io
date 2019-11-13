@@ -88,14 +88,14 @@ function css (el, property) {
 </script>
 
 <style lang="stylus">
-$navbar-vertical-padding = 0.7rem
-$navbar-horizontal-padding = 1.5rem
+$navbar-vertical-padding = 0.6rem
+$navbar-horizontal-padding = 2.6rem
 
 .navbar
   line-height $navbarHeight - 1.4rem
   .nav_content
     position relative
-    padding $navbar-vertical-padding $navbar-horizontal-padding
+    padding $navbar-vertical-padding 0
     height 100%
     max-width 960px
     margin 0px auto
@@ -118,7 +118,7 @@ $navbar-horizontal-padding = 1.5rem
     white-space nowrap
     font-size 0.9rem
     position absolute
-    right $navbar-horizontal-padding
+    right 1 rem
     top $navbar-vertical-padding
     display flex
     .search-box
@@ -127,7 +127,8 @@ $navbar-horizontal-padding = 1.5rem
 
 @media (max-width: $MQMobile)
   .navbar
-    padding-left 4rem
+    .nav_content
+      padding $navbar-vertical-padding $navbar-horizontal-padding
     .can-hide
       display none
     .links

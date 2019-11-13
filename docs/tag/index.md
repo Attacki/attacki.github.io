@@ -31,8 +31,7 @@ module.exports = {
                 {tagName:'WebGl',title:'WebGl',articles:12},
                 {tagName:'Gulp',title:'Gulp',articles:12},
                 {tagName:'Webpack',title:'Webpack',articles:12},
-                {tagName:'Python',title:'Python',articles:12},
-                {tagName:'Other',title:'其他',articles:12},
+                {tagName:'Python',title:'Python',articles:12}
             ]
         }
     },

@@ -49,14 +49,14 @@ export default{
     font-size: 15px
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.1));
     cursor pointer
-    background-color: #eaecef
+    background-color: #7d7d7d
     &::after
         position absolute
         top: 0
         right: -10px
         content: ''
         width: 0
-        border-left: 10px solid #eaecef
+        border-left: 10px solid #7d7d7d
         border-top: 12px solid transparent
         border-bottom: 12px solid transparent
         cursor pointer

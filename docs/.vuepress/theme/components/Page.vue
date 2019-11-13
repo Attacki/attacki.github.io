@@ -24,8 +24,14 @@ export default {
 <style lang="stylus">
 @require '../styles/wrapper.styl';
 
-.page {
+.theme-default-content
+  max-width 960px !important
+  margin 100px auto !important
+  background-color #f0f0f0
+
+.page 
   padding-bottom: 2rem;
   display: block;
-}
+  h1
+    margin-top -3.1rem !important
 </style>

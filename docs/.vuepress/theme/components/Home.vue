@@ -72,10 +72,12 @@ export default {
 
 <style lang="stylus">
 .home
-  padding $navbarHeight 2rem
-  max-width 960px
-  margin 0px auto
   display block
+  padding 2rem
+  max-width 960px
+  margin 100px auto
+  box-sizing: border-box
+  background-color #f0f0f0
   .hero
     text-align center
     img
@@ -88,10 +90,8 @@ export default {
     h1, .description, .action
       margin 1.8rem auto
     .description
-      max-width 35rem
       font-size 1.6rem
       line-height 1.3
-      color lighten($textColor, 40%)
     .action-button
       display inline-block
       font-size 1.2rem

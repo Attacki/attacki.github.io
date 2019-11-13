@@ -13,6 +13,7 @@
     "@vuepress/plugin-nprogress": "^1.0.0-rc.1",
     "@vuepress/plugin-register-components": "^1.0.0-rc.1",
     "crypto-js": "^3.1.9-1",
+    "markdown-it-katex": "^2.0.3",
     "qiniu": "^7.2.2",
     "request": "^2.88.0",
     "urlsafe-base64": "^1.0.0",
