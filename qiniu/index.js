@@ -115,7 +115,7 @@ try {
 // 创建七牛上传对象
 const uploadTarget = new qiniuUpload({
     bucket : 'attacki', //要上传的空间
-    base : ''
+    base : 'attacki'
 })
 
 // 上传构建好的文件内容
