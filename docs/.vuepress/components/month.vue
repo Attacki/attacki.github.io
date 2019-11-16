@@ -20,6 +20,7 @@ export default {
 <style lang="stylus" scoped>
 .title
     border-bottom 1px solid #f9f9f9
+    font-weight 500
 .link_list
     display flex
     justify-content space-between

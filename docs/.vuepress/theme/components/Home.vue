@@ -87,6 +87,7 @@ export default {
       margin 3rem auto 1.5rem
     h1
       font-size 3rem
+      font-weight  500
     h1, .description, .action
       margin 1.8rem auto
     .description
