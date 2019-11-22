@@ -20,6 +20,9 @@ module.exports = {
                 {
                     month:'2019年11月',
                     links:[
+                        {title:'nodejs中数据库的选择及使用',href:'/2019/11/22/'},
+                        {title:'用nodejs来提供一个简单接口',href:'/2019/11/18/'},
+                        {title:'nodejs创建服务器',href:'/2019/11/17/'},
                         {title:'游戏物理',href:'/2019/11/13/'},
                         {title:'Snabbdom，虚拟dom',href:'/2019/11/08/'},
                     ]

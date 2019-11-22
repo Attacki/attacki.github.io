@@ -23,7 +23,7 @@ module.exports = {
 	},
 	configureWebpack: {
 		output:{
-			publicPath:'http://pztfvnb6r.bkt.clouddn.com/attacki/'
+			publicPath:'http://q1cyw0v6w.bkt.clouddn.com/attacki/'
 		}
 	},
 	webpackChain:(config)=>{
@@ -35,7 +35,7 @@ module.exports = {
 			.options({
 			  limit: inlineLimit,
 			  name: `assets/img/[name].[hash:8].[ext]`,
-			  pulbicPath:'http://pztfvnb6r.bkt.clouddn.com/attacki/'
+			  pulbicPath:'http://q1cyw0v6w.bkt.clouddn.com/attacki/'
 		})
 	}
 }
