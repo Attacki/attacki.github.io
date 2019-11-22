@@ -29,6 +29,7 @@ export default {
     margin-bottom 35px
     .link
         flex-basis 46%
+        margin-left: 20px
 
 @media screen and (max-width: 768px) 
     .link_list
