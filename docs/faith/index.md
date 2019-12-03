@@ -1,5 +1,6 @@
 ---
 title: 'record the grace'
+hide: yes
 ---
 
 ## God <Badge type="success" text="恩典"/>

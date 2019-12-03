@@ -7,6 +7,7 @@ meta:
     - content: '我想承认自己，变成想成为的样子，就算卑微，但是伟大！'
 description: "不轻易发怒的，胜过勇士，制服己心的，强如取城。(箴言:14:29)"
 sidebar: auto
+hide: yes
 ---
 
 <month :monthData="monthData"></month>

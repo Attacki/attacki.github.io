@@ -6,8 +6,7 @@ module.exports = {
 	head: [
 		['link', { rel: 'icon', href: '/favicon.ico' }],
 		['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
-    	// ['link', { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css" }]
-	],
+    ],
 	markdown: {
 		lineNumbers: true,
 		extendMarkdown: md => {
@@ -21,21 +20,21 @@ module.exports = {
 			{ text: '标签', link: '/tag/' },
 		]
 	},
-	configureWebpack: {
-		output:{
-			publicPath:'http://q1cyw0v6w.bkt.clouddn.com/attacki/'
-		}
-	},
-	webpackChain:(config)=>{
-		config.module
-		.rule('images')
-		  .test(/\.(png|jpe?g|gif)(\?.*)?$/)
-		  .use('url-loader')
-			.loader('url-loader')
-			.options({
-			  limit: inlineLimit,
-			  name: `assets/img/[name].[hash:8].[ext]`,
-			  pulbicPath:'http://q1cyw0v6w.bkt.clouddn.com/attacki/'
-		})
-	}
+	// configureWebpack: {
+	// 	output:{
+	// 		publicPath:'http://q1cyw0v6w.bkt.clouddn.com/attacki/'
+	// 	}
+	// },
+	// webpackChain:(config)=>{
+	// 	config.module
+	// 	.rule('images')
+	// 	  .test(/\.(png|jpe?g|gif)(\?.*)?$/)
+	// 	  .use('url-loader')
+	// 		.loader('url-loader')
+	// 		.options({
+	// 		  limit: inlineLimit,
+	// 		  name: `assets/img/[name].[hash:8].[ext]`,
+	// 		  pulbicPath:'http://q1cyw0v6w.bkt.clouddn.com/attacki/'
+	// 	})
+	// }
 }

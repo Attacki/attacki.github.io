@@ -1,7 +1,7 @@
 <template>
-<div class="a_tag" :class="options.tagName" :data-tag="options.tagName" @click="tagSearch">
+<div class="a_tag" :class="options.title" :data-tag="options.title" @click="tagSearch">
     <span class="title">{{options.title}}</span>
-    <span class="article">{{options.articles}}</span>
+    <span class="article">{{options.count}}</span>
 </div>
 </template>
 
