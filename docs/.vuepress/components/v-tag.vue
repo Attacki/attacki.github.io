@@ -1,5 +1,5 @@
 <template>
-<div class="a_tag" :class="options.title" :data-tag="options.title" @click="tagSearch">
+<div class="a_tag" :class="[options.title, check == options.title.toLowerCase()?'checked':'']" :data-tag="options.title" @click="tagSearch">
     <span class="title">{{options.title}}</span>
     <span class="article">{{options.count}}</span>
 </div>
@@ -15,6 +15,10 @@ export default{
     props:{
         options:{
             type:Object,
+            require:true
+        },
+        check:{
+            type:String,
             require:true
         },
         search:{
@@ -50,6 +54,9 @@ export default{
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.1));
     cursor pointer
     background-color: #7d7d7d
+    &.checked,
+    &:hover
+        filter: drop-shadow(0 0 4px rgba(0,0,0,0.3));
     &::after
         position absolute
         top: 0
@@ -85,7 +92,7 @@ export default{
         color: #fff
         &::after
             border-left: 10px solid #7fbd00
-    &.Ajax
+    &.TypeScript
         background-color: #7e8b9d
         color: #fff
         &::after

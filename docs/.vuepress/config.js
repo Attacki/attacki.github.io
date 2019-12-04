@@ -3,10 +3,6 @@ module.exports = {
 	title: 'Attacki',
 	port:'8082',
 	plugins: ['@vuepress/nprogress','@vuepress/back-to-top'],
-	head: [
-		['link', { rel: 'icon', href: '/favicon.ico' }],
-		['link', { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css' }],
-    ],
 	markdown: {
 		lineNumbers: true,
 		extendMarkdown: md => {

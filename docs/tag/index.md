@@ -1,22 +1,25 @@
 ---
 title: '所有标签'
 hide: yes
+link:
+    - rel: stylesheet
+    - href: https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css
 ---
 
 ## 所有标签
 
 
-<v-tag v-for="tag in tag_list" :options="tag" :search="search"></v-tag>
+<v-tag v-for="tag in tag_list" :options="tag" :check="tag_selected.tag" :search="search"></v-tag>
 
 ## 全部文章
 
-<ul class="articles">
-    <transition-group name="fade">
+<div>
+    <transition-group tag="div" class="articles" name="fade">
         <li v-for="article in tag_selected.articles" :key="article.key" class="article">
             <a :href="article.path">{{article.title}} </a>
         </li>
     </transition-group>
-</ul>
+</div>
 
 <script>
 module.exports = {
@@ -27,13 +30,13 @@ module.exports = {
                 articles:[]
             },
             tag_list:{
-                'all':{title:'全部',articles:[],count:0},
+                'all':{title:'All',articles:[],count:0},
                 'js':{title:'Js',articles:[],count:0},
                 'vue':{title:'Vue',articles:[],count:0},
                 'react':{title:'React',articles:[],count:0},
                 'git':{title:'Git',articles:[],count:0},
                 'nodejs':{title:'NodeJs',articles:[],count:0},
-                'ajax':{title:'Ajax',articles:[],count:0},
+                'typescript':{title:'TypeScript',articles:[],count:0},
                 'express':{title:'Express',articles:[],count:0},
                 'koa':{title:'Koa',articles:[],count:0},
                 'canvas':{title:'Canvas',articles:[],count:0},
@@ -48,24 +51,31 @@ module.exports = {
         search(tag){
             console.log(tag)
             tag = String(tag).toLowerCase()
-            if(tag === '全部'){
-                tag = 'all'
-            }
-            this.tag_selected.tag = this.tag_list[tag].articles
+            window.sessionStorage.setItem('tag',tag)
+            this.tag_selected.tag = tag
             this.tag_selected.articles = this.tag_list[tag].articles
         }
     },
     mounted(){
-        console.log(this.$site)
-        // window.sessionStorage.setItem('tag',this.tag_selected)
         let pages = this.$site.pages
+        try{
+            var last_tag = window.sessionStorage.getItem('tag')
+            if(!!last_tag){
+                this.tag_selected.tag = last_tag
+            }
+        }catch(err){
+            console.log(err)
+        }
         for(let index in pages){
             if( String(pages[index].frontmatter.hide) === 'yes' ) continue
-            console.log(pages[index].frontmatter.hide === 'yes')
             var tag = pages[index].frontmatter.tag || 'all'
             tag = String(tag).toLowerCase()
             this.tag_list[tag].articles.push(pages[index])
             this.tag_list[tag].count++
+            if(tag !== 'all'){
+                this.tag_list.all.articles.push(pages[index])
+                this.tag_list.all.count++
+            }
         }
         this.tag_selected.articles = this.tag_list[this.tag_selected.tag].articles
     }
@@ -76,17 +86,9 @@ module.exports = {
 <style lang="stylus">
 
 .articles
-    display flex
-    justify-content space-between
-    flex-wrap wrap
+    position relative
     padding 10px 0px
-    margin-bottom 35px
     .article
-        flex-basis 46%
-        margin-left: 20px
-
-@media screen and (max-width: 768px) 
-    .articles
-        .article
-            flex-basis 100%
+        padding 5px 0px
+        transition: all .5s
 </style>
