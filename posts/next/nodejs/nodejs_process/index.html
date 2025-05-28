@@ -1,0 +1,388 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/"><meta name="generator" content="Astro v5.8.0"><!-- General Meta Tags --><title>Nodejs之process | ATTACKI</title><meta name="title" content="Nodejs之process | ATTACKI"><meta name="description" content="process对象的详解，介绍常用方法和属性参数等，相关示例代码。"><meta name="author" content="Attacki"><link rel="sitemap" href="/sitemap-index.xml"><link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&ver=4.6.1" type="text/css" media="all"><link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&ver=4.6.1" type="text/css" media="all"><!-- Open Graph / Facebook --><meta property="og:title" content="Nodejs之process | ATTACKI"><meta property="og:description" content="process对象的详解，介绍常用方法和属性参数等，相关示例代码。"><meta property="og:url" content="https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/"><meta property="og:image" content="https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/index.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/"><meta property="twitter:title" content="Nodejs之process | ATTACKI"><meta property="twitter:description" content="process对象的详解，介绍常用方法和属性参数等，相关示例代码。"><meta property="twitter:image" content="https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2022/1/1 15:00:00"><meta property="article:modified_time" content="2025/5/27 23:15:58"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Nodejs之process | ATTACKI","image":"https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/index.png","datePublished":"2022/1/1 15:00:00","dateModified":"2025/5/27 23:15:58","author":[{"@type":"Person","name":"Attacki","url":"https://satnaing.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="ATTACKI" href="https://astro-paper.pages.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CtSceO8m.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DqETVESZ.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: nodejs\4E4Bprocess; }@layer astro { ::view-transition-old(nodejs\4E4Bprocess) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(nodejs\4E4Bprocess) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(nodejs\4E4Bprocess) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(nodejs\4E4Bprocess) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: nodejs; }@layer astro { ::view-transition-old(nodejs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(nodejs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(nodejs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(nodejs) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="label_font absolute -top-full left-16 z-50 px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-4xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="label_font relative flex w-full items-baseline justify-between p-4 sm:items-center sm:py-6"> <div class="inline-flex items-center"> <a href="/" class="font-500 py-1 text-4xl leading-7 whitespace-nowrap sm:static"> ATTACKI </a> <a target="_blank" href="/rss.xml" class="ml-4 box-content inline-flex h-[36px] w-[36px] items-center sm:static" aria-label="rss feed" title="RSS Feed"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-acent scale-180 stroke-3"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg> <span class="sr-only">RSS Feed</span> </a> </div> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="font-500 mt-4 grid w-44 grid-cols-2 place-content-center gap-2 text-2xl [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/archives">
+Archives
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-4xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-4xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent label_font focus-outline mt-6 mb-6 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 -mt-1"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-4xl px-4 pb-12" data-pagefind-body> <h1 class="label_font inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> Nodejs之process </h1> <div class="flex items-center gap-4"> <div class="label_font flex items-end space-x-2 opacity-80 my-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="text-sm sm:text-base">
+Updated:
+</span> <span class="text-sm sm:text-base"> <time datetime="Tue, 27 May 2025 15:15:58 GMT">2025/05/27</time> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">11:15 PM</span> </span> </div> </div> <article id="article" class="mx-auto prose mt-8 max-w-4xl"> <h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#%E4%B8%80%E7%89%B9%E7%82%B9">一、特点</a></li>
+<li><a href="#%E4%BA%8C%E4%BD%9C%E7%94%A8">二、作用</a></li>
+<li><a href="#%E4%B8%89%E5%B8%B8%E8%A7%81%E5%8F%82%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95">三、常见参数和方法</a></li>
+<li><a href="#%E5%9B%9B%E7%A4%BA%E4%BE%8B">四、示例</a></li>
+<li><a href="#%E4%BA%94%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9">五、注意事项</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="一特点">一、特点</h2>
+<ol>
+<li>全局可访问性<br>
+process 是 Node.js 的全局对象，无需通过 require 导入即可直接使用。</li>
+<li>继承自 EventEmitter<br>
+它是一个 EventEmitter 实例，可以监听和处理系统级事件（如进程退出、未捕获异常等）。</li>
+<li>进程信息与控制<br>
+提供进程的详细信息（如 PID、版本、工作目录等）和操作方法（如切换目录、终止进程）。</li>
+<li>环境交互能力<br>
+支持访问和修改环境变量（process.env）、处理命令行参数（process.argv），以及操作标准输入/输出流（stdin、stdout、stderr）。</li>
+</ol>
+<h2 id="二作用">二、作用</h2>
+<ol>
+<li>进程管理
+<ul>
+<li>获取进程 ID（process.pid）、操作系统平台（process.platform）等信息。</li>
+<li>终止进程（process.exit()）或切换工作目录（process.chdir()）。</li>
+</ul>
+</li>
+<li>事件处理
+<ul>
+<li>监听 exit 事件执行进程退出前的清理操作。</li>
+<li>捕获未处理的异常（uncaughtException 事件）防止程序崩溃。</li>
+</ul>
+</li>
+<li>输入/输出流操作
+<ul>
+<li>通过 process.stdin 读取输入，process.stdout 写入控制台输出。</li>
+<li>实现管道操作，例如 process.stdin.pipe(process.stdout) 实时回显输入内容。</li>
+</ul>
+</li>
+<li>性能监控
+<ul>
+<li>使用 process.memoryUsage() 获取内存使用情况。</li>
+<li>通过 process.uptime() 监测进程运行时间。</li>
+</ul>
+</li>
+<li>进程间通信（IPC）
+<ul>
+<li>在父子进程间通过 process.send() 和 message 事件传递消息。</li>
+</ul>
+</li>
+</ol>
+<h2 id="三常见参数和方法">三、常见参数和方法</h2>
+<ol>
+<li>
+<p>process.memoryUsage() 返回一个对象，包含堆使用情况、外部内存等信息。</p>
+<ul>
+<li>rss 常驻内存</li>
+<li>heapTotal 申请总内存</li>
+<li>heapUsed 使用的内存</li>
+<li>external 扩展使用的内存  底层的c或c++模块占用</li>
+<li>arrayBuffers 独立空间</li>
+</ul>
+</li>
+<li>
+<p>process.cpuUsage() 返回一个对象，包含用户态和内核态的CPU使用时间, 可用于分析用户代码运行和系统调度分别花费的事件。</p>
+<ul>
+<li>user</li>
+<li>system</li>
+</ul>
+</li>
+<li>
+<p>process属性，可用于查看系统信息和环境变量</p>
+<ul>
+<li>process.versions node环境</li>
+<li>process.arch cpu架构</li>
+<li>process.env 用户环境</li>
+<li>process.env. NODE_ENV 用户环境</li>
+<li>process.env. PATH 系统环境</li>
+<li>process.env. USERPROFILE win系统环境</li>
+<li>process.env. HOME  mac系统环境</li>
+<li>process.platform  系统平台</li>
+</ul>
+</li>
+<li>
+<p>运行状态 启动参数</p>
+<ul>
+<li>process.argv      参数数组 前两个是默认参数:node位置和文件位置 后续为自定义参数</li>
+<li>process.pid       进程id</li>
+<li>process.uptime()  运行时间</li>
+</ul>
+</li>
+</ol>
+<h2 id="四示例">四、示例</h2>
+<ol>
+<li>获取命令行参数</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#24292EFF;--shiki-dark:#BAEBE2">argv</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 输出数组，包含执行参数</span></span></code></pre>
+<ol start="2">
+<li>环境变量操作</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">const</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> apiKey</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic"> process</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">env</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">API_KEY</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 读取环境变量</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">env</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;--shiki-dark:#82AAFF">NODE_ENV</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="color:#22863A;--shiki-dark:#ECC48D">production</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 修改环境变量</span></span></code></pre>
+<ol start="3">
+<li>工作目录管理</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">cwd</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 当前工作目录</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">chdir</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">/new/dir</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 切换目录</span></span></code></pre>
+<ol start="4">
+<li>事件监听</li>
+</ol>
+<blockquote>
+<p>exit事件不要做异步操作</p>
+</blockquote>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">on</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">exit</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD"> (</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">code</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">    console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D6DEEB">`</span><span style="color:#22863A;--shiki-dark:#ECC48D">进程退出，代码：</span><span style="color:#D32F2F;--shiki-dark:#D3423E">${</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">code</span><span style="color:#D32F2F;--shiki-dark:#D3423E">}</span><span style="color:#22863A;--shiki-dark:#D6DEEB">`</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 退出前执行</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">on</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">uncaughtException</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD"> (</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">err</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">    console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">error</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">未捕获异常:</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> err</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 防止崩溃</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">});</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">on</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">beforeExit</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD"> (</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">code</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">    console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">进程退出前，代码： </span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> +</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> code</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    setTimeout</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">        console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">进程退出前，代码： </span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> +</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> code</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">        process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">exit</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1000</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">})</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">done</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span></code></pre>
+<ol start="5">
+<li>进程控制</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">exit</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 终止进程并返回状态码</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">kill</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#24292EFF;--shiki-dark:#BAEBE2">pid</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="color:#22863A;--shiki-dark:#ECC48D">SIGTERM</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 发送终止信号</span></span></code></pre>
+<ol start="6">
+<li>异步任务调度</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">nextTick</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">()</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">    console</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">在下个事件循环执行</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">); </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 优先于其他异步操作</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">});</span></span></code></pre>
+<ol start="7">
+<li>stdin stdout</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="js"><code><span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">console</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">log</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> function</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">(</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">data</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">    process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">stdout</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">write</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">--- </span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> +</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> data</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> +</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="color:#22863A;--shiki-dark:#F78C6C">\n</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">import</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> fs </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">from</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> '</span><span style="color:#22863A;--shiki-dark:#ECC48D">node:fs</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">fs</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">createReadStream</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">test.txt</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">pipe</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#24292EFF;--shiki-dark:#BAEBE2">stdout</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">stdin</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setEncoding</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">utf-8</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">stdin</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">on</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">readable</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D9F5DD"> ()</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    let</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> chunk</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic"> process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">stdin</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">read</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#1976D2;font-style:inherit;--shiki-dark:#7FDBCA;--shiki-dark-font-style:italic">    process</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#FAF39F;--shiki-dark-font-style:italic">stdout</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">write</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">data </span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> +</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> chunk</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">})</span></span></code></pre>
+<h2 id="五注意事项">五、注意事项</h2>
+<ul>
+<li>避免全局污染：虽然 process 是全局对象，但应谨慎修改其属性（如 process.title）。</li>
+<li>异常处理：未捕获的异常可能导致进程不稳定，建议结合 try/catch 和事件监听确保健壮性。</li>
+<li>资源释放：在 exit 事件中仅支持同步操作，异步任务需提前完成。</li>
+</ul>
+<p>通过合理利用 process 对象，开发者可以更高效地控制 Node.js 进程的行为，实现复杂的系统级操作。</p> </article> <hr class="my-8 border-dashed"> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/nodejs/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-2.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Nodejs</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://astro-paper.pages.dev/posts/next/nodejs/nodejs_process/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline fixed right-8 bottom-10 py-1 text-center whitespace-nowrap text-accent hover:opacity-75 md:right-20"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="scale-180 rotate-90 transform-[scale(1.2)] rounded-[3px] border-1 bg-white stroke-black stroke-1 hover:border-(--accent) hover:stroke-(--accent) md:transform-[scale(1.4)]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <!-- <span>Back to Top</span> --> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/next/javascript/tail_circle" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">Javascript之尾调优化</div> </div> </a> <a href="/posts/next/c/c_note" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">C++之学习之旅</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-4xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://www.linkedin.com/in/%E6%A1%82%E8%B0%86-%E6%B6%82-a685692aa/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="ATTACKI on LinkedIn"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">ATTACKI on LinkedIn</span> </a><a href="mailto:17671723957@163.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to ATTACKI"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to ATTACKI</span> </a> </div> <div class="inline-flex label_font  items-center"> <a href="/" class="py-1 text-xl leading-7 whitespace-nowrap sm:static"> ATTACKI </a> <a target="_blank" href="/rss.xml" class="ml-2 box-content inline-flex h-[24px] w-[24px] items-center sm:static" aria-label="rss feed" title="RSS Feed"> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-acent scale-180 stroke-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg> <span class="sr-only">RSS Feed</span> </a> <span>2025</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    controlBacktopDisplay(
+      document.body.scrollTop || document.documentElement.scrollTop
+    );
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+      controlBacktopDisplay(scrolled);
+    });
+  }
+
+  function controlBacktopDisplay(scrolled) {
+    const backTop = document.querySelector("#back-to-top");
+    if (scrolled === 0) {
+      backTop.style.display = "none";
+    } else {
+      backTop.style.display = "block";
+    }
+  }
+
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 top-3 rounded-xs bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

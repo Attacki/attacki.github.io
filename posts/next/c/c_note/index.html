@@ -1,0 +1,849 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://astro-paper.pages.dev/posts/next/c/c_note/"><meta name="generator" content="Astro v5.8.0"><!-- General Meta Tags --><title>C++之学习之旅 | ATTACKI</title><meta name="title" content="C++之学习之旅 | ATTACKI"><meta name="description" content="C++的一些基础知识，和一些需要注意的点。指针，引用，泛型，类，虚函数，数组。"><meta name="author" content="Attacki"><link rel="sitemap" href="/sitemap-index.xml"><link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&ver=4.6.1" type="text/css" media="all"><link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&ver=4.6.1" type="text/css" media="all"><!-- Open Graph / Facebook --><meta property="og:title" content="C++之学习之旅 | ATTACKI"><meta property="og:description" content="C++的一些基础知识，和一些需要注意的点。指针，引用，泛型，类，虚函数，数组。"><meta property="og:url" content="https://astro-paper.pages.dev/posts/next/c/c_note/"><meta property="og:image" content="https://astro-paper.pages.dev/posts/next/c/c_note/index.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-paper.pages.dev/posts/next/c/c_note/"><meta property="twitter:title" content="C++之学习之旅 | ATTACKI"><meta property="twitter:description" content="C++的一些基础知识，和一些需要注意的点。指针，引用，泛型，类，虚函数，数组。"><meta property="twitter:image" content="https://astro-paper.pages.dev/posts/next/c/c_note/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2024/6/13 15:00:00"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"C++之学习之旅 | ATTACKI","image":"https://astro-paper.pages.dev/posts/next/c/c_note/index.png","datePublished":"2024/6/13 15:00:00","author":[{"@type":"Person","name":"Attacki","url":"https://satnaing.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="ATTACKI" href="https://astro-paper.pages.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CtSceO8m.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DqETVESZ.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: c-\4E4B\5B66\4E60\4E4B\65C5; }@layer astro { ::view-transition-old(c-\4E4B\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(c-\4E4B\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(c-\4E4B\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(c-\4E4B\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: c; }@layer astro { ::view-transition-old(c) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(c) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(c) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(c) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="label_font absolute -top-full left-16 z-50 px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-4xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="label_font relative flex w-full items-baseline justify-between p-4 sm:items-center sm:py-6"> <div class="inline-flex items-center"> <a href="/" class="font-500 py-1 text-4xl leading-7 whitespace-nowrap sm:static"> ATTACKI </a> <a target="_blank" href="/rss.xml" class="ml-4 box-content inline-flex h-[36px] w-[36px] items-center sm:static" aria-label="rss feed" title="RSS Feed"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-acent scale-180 stroke-3"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg> <span class="sr-only">RSS Feed</span> </a> </div> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="font-500 mt-4 grid w-44 grid-cols-2 place-content-center gap-2 text-2xl [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/archives">
+Archives
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-4xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-4xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent label_font focus-outline mt-6 mb-6 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 -mt-1"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-4xl px-4 pb-12" data-pagefind-body> <h1 class="label_font inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> C++之学习之旅 </h1> <div class="flex items-center gap-4"> <div class="label_font flex items-end space-x-2 opacity-80 my-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="sr-only">Published:</span> <span class="text-sm sm:text-base"> <time datetime="Thu, 13 Jun 2024 07:00:00 GMT">2024/06/13</time> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">03:00 PM</span> </span> </div> </div> <article id="article" class="mx-auto prose mt-8 max-w-4xl"> <h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#c%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C">c++如何工作</a></li>
+<li><a href="#c%E7%BC%96%E8%AF%91%E5%99%A8%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C">c++编译器如何工作</a></li>
+<li><a href="#c%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B">c++基础类型</a></li>
+<li><a href="#c%E7%9A%84%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC">c++的左值和右值</a></li>
+<li><a href="#struct">struct</a></li>
+<li><a href="#class">class</a></li>
+<li><a href="#%E6%8C%87%E9%92%88%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1">指针对象和引用对象</a></li>
+<li><a href="#%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">类的构造函数</a></li>
+<li><a href="#c%E5%AE%9A%E4%B9%89%E7%B1%BB%E7%9A%84%E6%95%B0%E7%BB%84">c++定义类的数组</a></li>
+<li><a href="#%E7%B1%BB%E5%AE%9E%E4%BE%8B%E5%8C%96%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8Fnew%E4%B8%8E%E4%B8%8Dnew">类实例化两种方式，new与不new</a></li>
+<li><a href="#%E8%99%9A%E5%87%BD%E6%95%B0">虚函数</a></li>
+<li><a href="#%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0">纯虚函数</a></li>
+<li><a href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E9%97%AE%E9%A2%98">头文件重复问题</a></li>
+<li><a href="#%E5%A4%B4%E6%96%87%E4%BB%B6%E7%9A%84%E5%BC%95%E7%94%A8%E6%96%B9%E6%B3%95">头文件的引用方法</a></li>
+<li><a href="#cc%E4%B8%AD%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E9%9D%A0%E8%BF%91%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BF%98%E6%98%AF%E9%9D%A0%E8%BF%91%E6%95%B0%E6%8D%AE%E5%8F%98%E9%87%8F%E4%B9%A6%E5%86%99">C/C++中的指针*是靠近数据类型还是靠近数据变量书写</a></li>
+<li><a href="#%E8%8C%83%E5%9B%B4%E8%A7%A3%E6%9E%90%E8%BF%90%E7%AE%97%E7%AC%A6-">范围解析运算符 ::</a></li>
+<li><a href="#const-%E5%92%8C-">const 和 *</a></li>
+<li><a href="#override">override</a></li>
+<li><a href="#final-%E5%85%B3%E9%94%AE%E5%AD%97">final 关键字</a></li>
+<li><a href="#noexcept-%E5%85%B3%E9%94%AE%E5%AD%97">noexcept 关键字</a></li>
+<li><a href="#lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F">lambda表达式</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84">数组</a></li>
+<li><a href="#cc-%E4%B8%ADstatic%E7%9A%84%E4%BD%9C%E7%94%A8">C/C++ 中static的作用</a></li>
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%AE%B5%E4%BB%A3%E7%A0%81%E4%B8%8D%E6%8A%A5%E9%94%99">为什么这段代码不报错？</a></li>
+</ul>
+<p></p></details><p></p>
+<h2 id="c如何工作">c++如何工作</h2>
+<blockquote>
+<p>C++ 会为每个cpp文件构建一个obj文件，编译器在构建的时候会处理每个文件。
+它默认相信我们的所有声明，所以可能出现只有在执行的时候，才发现声明的函数是否被链接器正确链接
+但是，在构建整个项目的时候，也可以发现对应的错误</p>
+</blockquote>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// main.cpp</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &#x3C;</span><span style="color:#22863A;--shiki-dark:#ECC48D">iostream</span><span style="color:#22863A;--shiki-dark:#D9F5DD">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> message</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(){</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    Log</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">hello world!</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::</span><span style="color:#1976D2;--shiki-dark:#C5E478">cin</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">get</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// log.cpp</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &#x3C;</span><span style="color:#22863A;--shiki-dark:#ECC48D">iostream</span><span style="color:#22863A;--shiki-dark:#D9F5DD">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> message</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">){</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> message </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span></code></pre>
+<h2 id="c编译器如何工作">c++编译器如何工作</h2>
+<blockquote>
+<p>从文本文件(code)到可执行的二进制文件，有个两个主要动作，一个就是编译，另一个是链接。
+编译把cpp文件编译为obj文件，然后被传递给链接器，</p>
+</blockquote>
+<p>编译和链接是两个阶段</p>
+<ul>
+<li>编译会检查代码语法和规范的错误，但不检查引用和调用错误</li>
+<li>链接会检查定义和引用错误，重复的定义和引用会报错，h文件中最好是只定义类型，不具体实现，否则容易出现链接错误。</li>
+</ul>
+<h2 id="c基础类型">c++基础类型</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num1 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">num1 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 输出 10</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num1 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 输出 20</span></span></code></pre>
+<blockquote>
+<p>在 C++ 中，对于基本数据类型（如int、char、float等），这种赋值操作是按值进行的。即把num的值10复制一份，然后将这个副本存储到num1所占用的内存空间中。此后，num和num1是两个相互独立的变量，对其中一个变量的修改不会影响到另一个变量</p>
+</blockquote>
+<h2 id="c的左值和右值">c++的左值和右值</h2>
+<p>左右值的特点：</p>
+<ol>
+<li>左值和右值都是指的表达式，
+<ul>
+<li>比如 int a = 1 中的 a 是左值，++a 是左值, func() 也可能是左值，而 a+1 是右值， 110 也是一个右值。</li>
+</ul>
+</li>
+<li>左值可以放在 = 的左边，右值只能放在 = 的右边，这其中隐含的意思就是左值也能放在 = 的右边，但是右值不能放在 = 的左边。</li>
+<li>左值可以取地址，代表着内存中某个位置，可以存储数据，右值仅仅是一个值，不能取地址，或者它看起来是一个变量，但它是临时的无法取地址，例如一个函数的非引用的值返回。</li>
+</ol>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> age </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 18</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// age是左值，可以被赋值，可以取地址，代表可以存储整数的内存地址</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#F78C6C">18</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> age;</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 编译时会提示错误：error: lvalue required as left operand of assignment</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 18不能代表任何内存地址，不能作为左值</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">age</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(age</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 以上两个语句，编译时会提示错误：error: lvalue required as increment operand </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">age)</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 可以编译成功</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">/**后置自增 age++ 的优先级要高于前置自增 ++age 的优先级。**/</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> </span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 前置自增在原对象上自增，返回的是原对象，而不是自增后的值。</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">UPInt</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> UPInt::operator</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">　*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">this </span><span style="color:#D32F2F;--shiki-dark:#C792EA">+=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // 原对象自增</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">　return</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">this;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // 返回原对象</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 后置自增的一般实现，是先将原对象的数据存储到临时变量中，接着在原对象上实现自增，然后将临时变量以只读的方式返回</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> UPInt UPInt::operator</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">　UPInt oldValue </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">this;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 将原对象赋值给临时变量</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">　++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">this);</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">              // 原对象自增</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">　return</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> oldValue;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">        // 返回临时变量</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 既然前置自增返回的是引用，就可以进行赋值</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">age </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 甚至只要函数返回的是左值，也可以进行赋值</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> g;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> func</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    return</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> g;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">func</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 6</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // g为6</span></span>
+<span class="line"></span></code></pre>
+<h2 id="struct">struct</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">struct</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Date{</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> day</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> month</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> year;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Date</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> dayAdd</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> d)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		day </span><span style="color:#D32F2F;--shiki-dark:#C792EA">+=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> d;</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">		if</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (day </span><span style="color:#D32F2F;--shiki-dark:#C792EA">></span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 31</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			month</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			day </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> day </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 31</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">		return</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">this;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>返回值类型</th><th>描述</th><th>示例</th></tr></thead><tbody><tr><td>返回*this</td><td>返回的是Date对象的引用，函数的返回值类型为Date&#x26;。 <br>  因为返回的是对象的引用，能够进行链式调用。</td><td><code>date.dayAdd(10).print();</code></td></tr><tr><td>返回this</td><td>返回的是指向Date对象的指针，函数的返回值类型为Date*。<br> 由于返回的是指针，需要使用箭头运算符->来调用成员函数。</td><td><code>date->dayAdd(10)->print();</code></td></tr></tbody></table>
+<blockquote>
+<p>对象性质无论是返回*this还是this，操作的都是同一个对象。返回this时返回的是指向当前对象的指针，而返回*this时返回的是当前对象的引用，它们都指向或代表同一个对象实例，并非另一个对象。</p>
+</blockquote>
+<h2 id="class">class</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 一个类中所有东西默认都是私有的</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Creature {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> HP;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	public:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">		int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> setHP</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> num)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			HP </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Log{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 枚举</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	enum</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Level</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		INFO</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		WARNING</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		ERROR</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">private:</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// c++11才支持在类中初始化变量</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Level level </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> INFO;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> setLevel</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(Level l)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		level </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> l;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Error</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> std::string message)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	{</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">		if</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (level </span><span style="color:#D32F2F;--shiki-dark:#C792EA">>=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> ERROR)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">[ERROR] </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> &#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> message </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Warning</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> std::string message)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	{</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">		if</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (level </span><span style="color:#D32F2F;--shiki-dark:#C792EA">>=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> WARNING)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">[WARNING] </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> &#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> message </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Info</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> std::string message)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	{</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">		if</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (level </span><span style="color:#D32F2F;--shiki-dark:#C792EA">>=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> INFO)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">[INFO] </span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> &#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> message </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Log log;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	log</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">setLevel</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">Log::ERROR</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	log</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Error</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Hello</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	log</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Info</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Hello</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	log</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Warning</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Hello</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="指针对象和引用对象">指针对象和引用对象</h2>
+<p><code>引用</code>：使用引用时可以像使用普通对象一样直接访问和操作，不需要额外的运算符。引用就当是给某个已经定义的变量起了个别名。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ref </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ref </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 直接使用引用修改所引用对象的值</span></span></code></pre>
+<p><code>引用</code>：当引用作为函数参数时，函数内部可以直接修改所引用的对象，但不能让引用引用其他对象。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> modifyByReference</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> ref</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	ref </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 修改所引用对象的值</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 不能让ref引用其他对象</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// int anotherNum = 200;</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// ref = anotherNum; // 这只是修改了ref引用对象的值，而不是让ref引用其他对象</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<p><code>指针</code>：使用指针时需要使用解引用运算符 * 来访问它所指向的对象，或者使用箭头运算符 -> 来访问对象的成员。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(){</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> num </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 10</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ptr </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">num;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  *</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ptr </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 20</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 使用解引用运算符修改所指向对象的值</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  </span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  struct</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Point</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> y;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  };</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  </span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  Point p </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  Point </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ptrPoint </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">p;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">  ptrPoint</span><span style="color:#212121;--shiki-dark:#D6DEEB">-></span><span style="color:#24292EFF;--shiki-dark:#C5E478">x</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 3</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 使用箭头运算符访问对象的成员</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<p><code>指针</code>：当指针作为函数参数时，函数内部可以修改指针所指向的对象，也可以修改指针本身的值（即让指针指向其他对象）。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> modifyByPointer</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> ptr</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">	*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ptr </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 修改指针所指向的对象的值</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 可以修改指针本身的值，让它指向其他对象</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> anotherNum </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 200</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	ptr </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">anotherNum;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // &#x26;取出来的就是指针</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="类的构造函数">类的构造函数</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Entity {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">private:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> age;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::string name;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    Entity</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> : </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">name</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">UNKNOWN</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {}</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    Entity</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> std::string</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> name)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> :</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">name</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(name)</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> age</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {}</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    Entity</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> age)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> :</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">name</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">UNKNOWN</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> age</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(age)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(){</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			std::unique_ptr</span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Entity</span><span style="color:#D32F2F;--shiki-dark:#C792EA">></span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> entity</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(new </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Entity</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">())</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			std::unique_ptr</span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Entity</span><span style="color:#D32F2F;--shiki-dark:#C792EA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> entity </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::make_unique</span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Entity</span><span style="color:#D32F2F;--shiki-dark:#C792EA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">      entity</span><span style="color:#212121;--shiki-dark:#D6DEEB">-></span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">printInfo</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::</span><span style="color:#1976D2;--shiki-dark:#C5E478">cin</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">get</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="c定义类的数组">c++定义类的数组</h2>
+<blockquote>
+<p>c++ 有某个类 Employee； 这样写会报错： Employee e1[422]; 但这样写就不会： Employee *e1[422];</p>
+</blockquote>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Employee</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	string name;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 为类添加默认构造函数后，Employee e1[422]也不会报错</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	Employee</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 直接创建对象数组，需要在栈上分配对象内存并调用构造函数初始化，可能因栈空间不足或缺少默认构造函数而报错。</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Employee </span><span style="color:#24292EFF;--shiki-dark:#C5E478">e1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">422</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">];</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // Error: 可能因栈空间不足或缺少默认构造函数而报错。</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 创建的是指针数组，只需要分配指针的内存空间，不会调用构造函数，不会出现上述问题，但需要手动管理对象的内存分配和释放。</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Employee </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#C5E478">e1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">422</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]; </span></span>
+<span class="line"></span></code></pre>
+<h2 id="类实例化两种方式new与不new">类实例化两种方式，new与不new</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 1. 不用new</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">A a;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> b</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">10</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">];</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 2. 用new</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">A </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> a </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> new </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">a</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> b </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> new </span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">5</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">];</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">delete a;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">delete</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">[]</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> b;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 会调用数组内每个对象的析构函数，不加[]就只会调用第一个对象的析构函数</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 前者在堆栈中分配内存，后者为动态内存分配，在一般应用中是没有什么区别的，但动态内存分配会使对象的可控性增强。</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 不加new在堆栈中分配内存</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 大程序用new，小程序直接申请</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 只是把对象分配在堆栈内存中</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// new必须delete删除，不用new系统会自动回收内存</span></span></code></pre>
+<h2 id="虚函数">虚函数</h2>
+<p>虚函数： 虚函数可以让指针在自动转换的时候，仍保证调用子类实现的同名函数</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">using std::cin;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">using std::cout;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">using std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">using std::string;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">using std::vector;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Employee</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	string name;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 为类添加默认构造函数后，Employee e1[422]也不会报错</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	Employee</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{};</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	Employee</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(string n)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// virtual标明是虚函数，虚函数表就是一个表，它包含基类中所有虚函数的映射，</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 这样我们可以在它运行时将它们映射到正确的覆写（override）函数</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	virtual </span><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> print</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Manager : public Employee</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> level;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	Manager</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(string n</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> l </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> print</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class CEO : public Manager</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> stock;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	CEO</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(string n</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> l </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> s </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 100</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> print</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Employee::</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Employee</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(string </span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">n</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) : </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">name</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(n) {}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">Manager::</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Manager</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(string </span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">n</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> l</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) : </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Employee</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(n)</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> level</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(l) {}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">CEO::</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">CEO</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(string </span><span style="color:#24292EFF;--shiki-dark:#D7DBE0">n</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> l</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> s</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) : </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">Manager</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(n</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> l)</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> stock</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(s) {}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Employee::</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">print</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> name </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Manager::</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">print</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> level </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#F78C6C">\t</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	Employee::print</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> CEO::</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">print</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> stock </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#F78C6C">\t</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	Manager::print</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Employee </span><span style="color:#24292EFF;--shiki-dark:#C5E478">e1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">422</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">];</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 需要手动实现Employee的空构造函数，否则会报错</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Employee </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">p;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Manager </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">m</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Zhang</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Employee </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">e</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Li</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	CEO </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">ceo</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#22863A;--shiki-dark:#ECC48D">Wang</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 以下的print函数根据实际指向对象所拥有的方法来执行</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	p </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">e;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	p</span><span style="color:#212121;--shiki-dark:#D6DEEB">-></span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">print</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// Li</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	p </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">m;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	p</span><span style="color:#212121;--shiki-dark:#D6DEEB">-></span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">print</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 1       Zhang</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	p </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">ceo;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">	p</span><span style="color:#212121;--shiki-dark:#D6DEEB">-></span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">print</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 100     1       Wang</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"></span></code></pre>
+<p><code>虚函数相关的运行时成本：</code></p>
+<blockquote>
+<p>首先，我们需要额外的内存来存储虚函数表，这样我们才可以分配到正确的函数，包括基类中要有一个成员指针指向虚函数表。
+其次，我们调用虚函数时，我们需要遍历这个表来确定映射到哪个函数，这是额外的性能损失。
+继承了父类的虚函数，子类就必须要实现，否则虚函数表就会报错</p>
+</blockquote>
+<h2 id="纯虚函数">纯虚函数</h2>
+<p>纯虚函数是在基类中声明的虚函数，它没有具体的实现，而是在函数声明后加上 = 0。纯虚函数的作用是为派生类提供一个统一的接口，派生类必须实现这个纯虚函数。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Base{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 纯虚函数</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	virtual </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> speak</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span></code></pre>
+<ul>
+<li>抽象类不能实例化对象，但可以定义抽象类的指针和引用。</li>
+<li>派生类必须实现基类的所有纯虚函数，否则派生类也会成为抽象类。</li>
+</ul>
+<h2 id="头文件重复问题">头文件重复问题</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 解决方法1：</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">pragma</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#C5E478;--shiki-dark-font-style:italic"> once</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 预处理指令，只编译一次</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> message</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> InitLog</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">struct</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> player {};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 解决方法2：</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">+</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">#ifdef _LOG_H</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 根据预定义的变量进行判断</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">+</span><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">define</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> _LOG_H</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Log</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> message</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">);</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> InitLog</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">struct</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> player {};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">+</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">#endif</span></span>
+<span class="line"></span></code></pre>
+<h2 id="头文件的引用方法">头文件的引用方法</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &#x3C;</span><span style="color:#22863A;--shiki-dark:#ECC48D">stdlib.h</span><span style="color:#22863A;--shiki-dark:#D9F5DD">></span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &#x3C;</span><span style="color:#22863A;--shiki-dark:#ECC48D">iostream</span><span style="color:#22863A;--shiki-dark:#D9F5DD">></span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 尖括号来告诉编译器搜索包含路径文件夹</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Log.h</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">		// 引号则通常用于包含相对于当前文件的文件</span></span></code></pre>
+<p>C 标准库通常会有.h 拓展但 C++ 文件没有，这是一种区分 C 标准库和 C++ 标准库的方法。</p>
+<h2 id="cc中的指针是靠近数据类型还是靠近数据变量书写">C/C++中的指针*是靠近数据类型还是靠近数据变量书写</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 如下语句很容易理解为p和q都是int类型的指针变量，但其实只有p是int类型的指针变量，q只是普通的int类型的变量而已</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> p</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> q;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 建议指针*靠近变量书写，同理C++中的引用&#x26;也靠近变量书写.</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">p</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> q;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> &#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">r </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> q;</span></span></code></pre>
+<h2 id="范围解析运算符">范围解析运算符 ::</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">/** 将 :: 用于类和命名空间 **/</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> </span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">namespace NamespaceA{</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    class ClassA {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    public:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">        int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    };</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // A namespace name used to disambiguate</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    NamespaceA::x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // A class name used to disambiguate</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    NamespaceA::ClassA a1;</span></span>
+<span class="line"><span style="color:#1976D2;--shiki-dark:#C5E478">    a1</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">x</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">/** 没有范围限定符的范围解析运算符表示全局命名空间。 **/</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> </span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">namespace NamespaceA{</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // the x in main()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // The x in the global namespace</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    ::x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">    // The x in the A namespace</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    NamespaceA::x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">/** 将 :: 用于静态成员 **/</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class ClassG {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">	static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> get_x</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> { </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">return</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;}</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">	static</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> ClassG::x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 6</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> gx1 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> ClassG::x;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> gx2 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> ClassG::get_x</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">/** 将 :: 用于范围枚举 **/</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">enum</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> class EnumA{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	First</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Second</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Third</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	EnumA enum_value </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> EnumA::First;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="const-和">const 和 *</h2>
+<p>不同编程风格的人使用 int const*，但要知道它和 const int* 是完全一样的，但如果你搞成 int* const，那就完成不同了</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> const</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> a </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// a和b是完全一样的，都代表一个常量指针</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> b </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// *a和*b所指的内容都不能变，但是a和b可以改变</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> const</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> c </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // *c所指的内容可以改变，但是c这个指针常量不能改变</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> const</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> a </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> new </span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // 这意味着我不能改变指针指向的内容，也不能改变这个指针本身</span></span></code></pre>
+<p>const只修饰紧跟在它后面的内容，除了类方法</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class Entity {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">private:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> m_X</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> m_Y;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	mutable std::string m_Z;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public:</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">		// 这里的const表示这个方法不能修改类的成员变量</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::string </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getX</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic"> const</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> { </span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">			m_Z </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">test mutable</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">			return</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> m_Z;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 这里的const则表示传入的是一个常量</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> printEntity</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Entity</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#D7DBE0"> e</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">) {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">		// 如果去掉getX的const就会报错：e has type "const Entity", but function "Entity::getX" is not marked const</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#1976D2;--shiki-dark:#C5E478"> e</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">getX</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">()</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	Entity e;</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">	printEntity</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(e)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">	const</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Entity </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">obj</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">20</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // obj 是常量对象，不能调用非 const 成员函数</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span></code></pre>
+<h2 id="override">override</h2>
+<p>override 关键字用于派生类中，表明该函数是对基类中虚函数的重写。它可以帮助编译器检查是否正确重写了基类的虚函数，如果派生类中的函数签名与基类中的虚函数不匹配，编译器会报错。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> func</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() override {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Derived::func()</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> &#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<p>使用 override 关键字明确表示它是对基类 中 func 虚函数的重写。</p>
+<h2 id="final-关键字">final 关键字</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 修饰类：当 final 用于类名之后时，表明该类不能被继承</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">class FinalClass final {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 修饰虚函数：当 final 用于虚函数的声明之后时，表明该虚函数不能在派生类中被重写。</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	virtual </span><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> func</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> final {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">		// 函数实现 </span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	}</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="noexcept-关键字">noexcept 关键字</h2>
+<p>noexcept 关键字用于表明函数不会抛出异常。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> func</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() noexcept {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">	std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">This function does not throw exceptions.</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> &#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="lambda表达式">lambda表达式</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">auto f </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">x]() {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 或者这样直接传值：</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">auto f </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [x]() {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 或者通过 = 号对所有变量进行传值传递：</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">auto f </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]() {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 或者通过引用符号 &#x26; 对所有的变量进行引用传递：</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">auto f </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&#x26;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]() {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// mutable使外部的入参copy可以被修改</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">auto f </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> [</span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]() mutable {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		x</span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">		std::cout </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> x </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> std::endl;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span></code></pre>
+<h2 id="数组">数组</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">#</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &#x3C;</span><span style="color:#22863A;--shiki-dark:#ECC48D">iostream</span><span style="color:#22863A;--shiki-dark:#D9F5DD">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(){</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    int</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> example</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">5</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">];</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">			// 数组实际上就是个指针</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">	  int</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> ptr </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> example;	</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    </span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    for</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> i </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; i </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 5</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">i) {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">			// 下面两行代码是等价的</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">			example</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[i] </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">			*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(ptr </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">+</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> i) </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">	// 在指针加上像 2 这样的值计算实际要加的字节数（偏移）取决于类型。这里我们是整数 int 指针，将会增加 2 * 4 的偏移（4 时每个整型 int 的大小）。</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">		char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> name </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">YOUSAZOE</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">   	char</span><span style="color:#24292EFF;--shiki-dark:#C5E478"> name1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[</span><span style="color:#1976D2;--shiki-dark:#F78C6C">8</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">] </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">Y</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">O</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">U</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">S</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">A</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">Z</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">O</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#22863A;--shiki-dark:#ECC48D">E</span><span style="color:#22863A;--shiki-dark:#D9F5DD">'</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    std::</span><span style="color:#1976D2;--shiki-dark:#C5E478">cin</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">get</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">();</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// C++11 的数组，你可以这样做：</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">std::array</span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;int</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 5</span><span style="color:#D32F2F;--shiki-dark:#C792EA">></span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> another;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">for</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (</span><span style="color:#D32F2F;--shiki-dark:#C792EA">int</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> i </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; i </span><span style="color:#D32F2F;--shiki-dark:#C792EA">&#x3C;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> another.</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">size</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(); </span><span style="color:#D32F2F;--shiki-dark:#C792EA">++</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">i) {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C5E478">  	another</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">[i] </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 2</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<h2 id="cc-中static的作用">C/C++ 中static的作用</h2>
+<ol>
+<li>在修饰变量的时候，static 修饰的静态局部变量只执行初始化一次，而且延长了局部变量的生命周期，直到程序运行结束以后才释放。</li>
+<li>static 修饰全局变量的时候，这个全局变量只能在本文件中访问，不能在其它文件中访问，即便是 extern 外部声明也不可以。</li>
+<li>static 修饰一个函数，则这个函数的只能在本文件中调用，不能被其他文件调用。static 修饰的变量存放在全局数据区的静态变量区，包括全局静态变量和局部静态变量，都在全局数据区分配内存。初始化的时候自动初始化为 0。</li>
+<li>不想被释放的时候，可以使用static修饰。比如修饰函数中存放在栈空间的数组。如果不想让这个数组在函数调用结束释放可以使用 static 修饰。</li>
+<li>考虑到数据安全性（当程序想要使用全局变量的时候应该先考虑使用 static）。</li>
+</ol>
+<h2 id="为什么这段代码不报错">为什么这段代码不报错？</h2>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 这段代码没有报错，"Moo" 是字符串字面量，其类型在 C++ 里相当于 const char* 有关</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">virtual </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">const</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> char</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> speak</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() { </span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">	return</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> "</span><span style="color:#22863A;--shiki-dark:#ECC48D">Moo</span><span style="color:#22863A;--shiki-dark:#D9F5DD">"</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre>
+<ul>
+<li>返回类型：函数的返回类型是 const char*，这意味着函数将返回一个指向常量字符的指针。</li>
+<li>返回值：“Moo” 是一个字符串字面量，它在表达式中会隐式转换为指向其首字符的指针，类型为 const char*。这个指针指向存储 “Moo” 的只读内存区域。</li>
+</ul> </article> <hr class="my-8 border-dashed"> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/c/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-2.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>C++</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://astro-paper.pages.dev/posts/next/c/c_note/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://astro-paper.pages.dev/posts/next/c/c_note/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://astro-paper.pages.dev/posts/next/c/c_note/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://astro-paper.pages.dev/posts/next/c/c_note/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://astro-paper.pages.dev/posts/next/c/c_note/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://astro-paper.pages.dev/posts/next/c/c_note/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline fixed right-8 bottom-10 py-1 text-center whitespace-nowrap text-accent hover:opacity-75 md:right-20"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="scale-180 rotate-90 transform-[scale(1.2)] rounded-[3px] border-1 bg-white stroke-black stroke-1 hover:border-(--accent) hover:stroke-(--accent) md:transform-[scale(1.4)]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <!-- <span>Back to Top</span> --> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/next/nodejs/nodejs_process" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">Nodejs之process</div> </div> </a> <a href="/posts/prev/nodejs/what_is_cli" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">脚手架运行原理</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-4xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://www.linkedin.com/in/%E6%A1%82%E8%B0%86-%E6%B6%82-a685692aa/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="ATTACKI on LinkedIn"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">ATTACKI on LinkedIn</span> </a><a href="mailto:17671723957@163.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to ATTACKI"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to ATTACKI</span> </a> </div> <div class="inline-flex label_font  items-center"> <a href="/" class="py-1 text-xl leading-7 whitespace-nowrap sm:static"> ATTACKI </a> <a target="_blank" href="/rss.xml" class="ml-2 box-content inline-flex h-[24px] w-[24px] items-center sm:static" aria-label="rss feed" title="RSS Feed"> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-acent scale-180 stroke-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg> <span class="sr-only">RSS Feed</span> </a> <span>2025</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    controlBacktopDisplay(
+      document.body.scrollTop || document.documentElement.scrollTop
+    );
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+      controlBacktopDisplay(scrolled);
+    });
+  }
+
+  function controlBacktopDisplay(scrolled) {
+    const backTop = document.querySelector("#back-to-top");
+    if (scrolled === 0) {
+      backTop.style.display = "none";
+    } else {
+      backTop.style.display = "block";
+    }
+  }
+
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 top-3 rounded-xs bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

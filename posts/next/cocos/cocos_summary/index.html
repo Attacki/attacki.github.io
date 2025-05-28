@@ -1,0 +1,712 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="canonical" href="https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/"><meta name="generator" content="Astro v5.8.0"><!-- General Meta Tags --><title>Cocos Creator学习之旅 | ATTACKI</title><meta name="title" content="Cocos Creator学习之旅 | ATTACKI"><meta name="description" content="Cocos相关知识总结和整理，游戏开发中避免一些问题，可以提升开发效率。"><meta name="author" content="Attacki"><link rel="sitemap" href="/sitemap-index.xml"><link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css"><link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css"><link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz%3A200%2C300%2C400%2C700&ver=4.6.1" type="text/css" media="all"><link rel="stylesheet" id="athemes-headings-fonts-css" href="//fonts.googleapis.com/css?family=Oswald%3A300%2C400%2C700&ver=4.6.1" type="text/css" media="all"><!-- Open Graph / Facebook --><meta property="og:title" content="Cocos Creator学习之旅 | ATTACKI"><meta property="og:description" content="Cocos相关知识总结和整理，游戏开发中避免一些问题，可以提升开发效率。"><meta property="og:url" content="https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/"><meta property="og:image" content="https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/index.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/"><meta property="twitter:title" content="Cocos Creator学习之旅 | ATTACKI"><meta property="twitter:description" content="Cocos相关知识总结和整理，游戏开发中避免一些问题，可以提升开发效率。"><meta property="twitter:image" content="https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/index.png"><!-- Article Published/Modified time --><meta property="article:published_time" content="2025/5/27 16:22:29"><meta property="article:modified_time" content="2025/5/27 23:15:58"><!-- Google JSON-LD Structured data --><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Cocos Creator学习之旅 | ATTACKI","image":"https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/index.png","datePublished":"2025/5/27 16:22:29","dateModified":"2025/5/27 23:15:58","author":[{"@type":"Person","name":"Attacki","url":"https://satnaing.dev/"}]}</script><!-- Enable RSS feed auto-discovery  --><!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery --><link rel="alternate" type="application/rss+xml" title="ATTACKI" href="https://astro-paper.pages.dev/rss.xml"><meta name="theme-color" content=""><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CtSceO8m.js"></script><script src="/toggle-theme.js"></script><link rel="stylesheet" href="/_astro/about.DqETVESZ.css">
+<style>@keyframes astroFadeInOut{0%{opacity:1}to{opacity:0}}@keyframes astroFadeIn{0%{opacity:0;mix-blend-mode:plus-lighter}to{opacity:1;mix-blend-mode:plus-lighter}}@keyframes astroFadeOut{0%{opacity:1;mix-blend-mode:plus-lighter}to{opacity:0;mix-blend-mode:plus-lighter}}@keyframes astroSlideFromRight{0%{transform:translate(100%)}}@keyframes astroSlideFromLeft{0%{transform:translate(-100%)}}@keyframes astroSlideToRight{to{transform:translate(100%)}}@keyframes astroSlideToLeft{to{transform:translate(-100%)}}@media (prefers-reduced-motion){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}[data-astro-transition-scope]{animation:none!important}}
+:where([data-astro-image]){object-fit:var(--fit);object-position:var(--pos);height:auto}:where([data-astro-image=full-width]){width:100%}:where([data-astro-image=constrained]){max-width:100%}
+</style><style>[data-astro-transition-scope="astro-fam6wyqg-1"] { view-transition-name: cocos-creator\5B66\4E60\4E4B\65C5; }@layer astro { ::view-transition-old(cocos-creator\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cocos-creator\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cocos-creator\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cocos-creator\5B66\4E60\4E4B\65C5) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-fam6wyqg-1"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-fam6wyqg-1"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-2"] { view-transition-name: cocos; }@layer astro { ::view-transition-old(cocos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(cocos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(cocos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(cocos) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-2"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-2"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style><style>[data-astro-transition-scope="astro-36ssibgs-3"] { view-transition-name: typescript; }@layer astro { ::view-transition-old(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }::view-transition-new(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back]::view-transition-old(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back]::view-transition-new(typescript) { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; } }[data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }[data-astro-transition=back][data-astro-transition-fallback="old"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="old"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeOut; }[data-astro-transition=back][data-astro-transition-fallback="new"] [data-astro-transition-scope="astro-36ssibgs-3"],
+			[data-astro-transition=back][data-astro-transition-fallback="new"][data-astro-transition-scope="astro-36ssibgs-3"] { 
+	animation-duration: 180ms;
+	animation-timing-function: cubic-bezier(0.76, 0, 0.24, 1);
+	animation-fill-mode: both;
+	animation-name: astroFadeIn; }</style></head> <body data-astro-cid-sckkx6r4>  <header> <a id="skip-to-content" href="#main-content" class="label_font absolute -top-full left-16 z-50 px-3 py-2 text-accent backdrop-blur-lg transition-all focus:top-4">
+Skip to content
+</a> <div id="nav-container" class="mx-auto flex max-w-4xl flex-col items-center justify-between sm:flex-row"> <div id="top-nav-wrap" class="label_font relative flex w-full items-baseline justify-between p-4 sm:items-center sm:py-6"> <div class="inline-flex items-center"> <a href="/" class="font-500 py-1 text-4xl leading-7 whitespace-nowrap sm:static"> ATTACKI </a> <a target="_blank" href="/rss.xml" class="ml-4 box-content inline-flex h-[36px] w-[36px] items-center sm:static" aria-label="rss feed" title="RSS Feed"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-acent scale-180 stroke-3"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg> <span class="sr-only">RSS Feed</span> </a> </div> <nav id="nav-menu" class="flex w-full flex-col items-center sm:ml-2 sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"> <button id="menu-btn" class="focus-outline self-end p-2 sm:hidden" aria-label="Open Menu" aria-expanded="false" aria-controls="menu-items"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden" id="close-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M18 6l-12 12" /><path d="M6 6l12 12" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-menu-deep" id="menu-icon"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6h16" /><path d="M7 12h13" /><path d="M10 18h10" /></svg> </button> <ul id="menu-items" class="font-500 mt-4 grid w-44 grid-cols-2 place-content-center gap-2 text-2xl [&#38;>li>a]:block [&#38;>li>a]:px-4 [&#38;>li>a]:py-3 [&#38;>li>a]:text-center [&#38;>li>a]:font-medium [&#38;>li>a]:hover:text-accent sm:[&#38;>li>a]:px-2 sm:[&#38;>li>a]:py-1 hidden sm:mt-0 sm:ml-0 sm:flex sm:w-auto sm:gap-x-5 sm:gap-y-0"> <li class="col-span-2"> <a href="/posts" class="active-nav">
+Posts
+</a> </li> <li class="col-span-2"> <a href="/tags">
+Tags
+</a> </li> <li class="col-span-2"> <a href="/archives">
+Archives
+</a> </li> <li class="col-span-2"> <a href="/about">
+About
+</a> </li> <li class="col-span-1 flex items-center justify-center"> <a href="/search" class="group inline-block hover:text-accent focus-outline flex p-3 sm:p-1" aria-label="search" title="Search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg> <span class="sr-only">Search</span> </a> </li> <li class="col-span-1 flex items-center justify-center"> <button id="theme-btn" class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent" title="Toggles light & dark" aria-label="auto" aria-live="polite"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" /></svg> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M14.828 14.828a4 4 0 1 0 -5.656 -5.656a4 4 0 0 0 5.656 5.656z" /><path d="M6.343 17.657l-1.414 1.414" /><path d="M6.343 6.343l-1.414 -1.414" /><path d="M17.657 6.343l1.414 -1.414" /><path d="M17.657 17.657l1.414 1.414" /><path d="M4 12h-2" /><path d="M12 4v-2" /><path d="M20 12h2" /><path d="M12 20v2" /></svg> </button> </li> </ul> </nav> </div> </div> <div class="max-w-4xl mx-auto px-4"> <hr class="border-border" aria-hidden="true"> </div> </header> <script type="module">function s(){const e=document.querySelector("#menu-btn"),t=document.querySelector("#menu-items"),n=document.querySelector("#menu-icon"),o=document.querySelector("#close-icon");!e||!t||!n||!o||e.addEventListener("click",()=>{const c=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",c?"false":"true"),e.setAttribute("aria-label",c?"Open Menu":"Close Menu"),t.classList.toggle("hidden"),n.classList.toggle("hidden"),o.classList.toggle("hidden")})}s();document.addEventListener("astro:after-swap",s);</script> <div class="mx-auto flex w-full max-w-4xl items-center justify-start px-2"><a id="back-button" href="/" class="group inline-block hover:text-accent label_font focus-outline mt-6 mb-6 flex hover:text-foreground/75"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 -mt-1"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg><span>Go back</span></a></div><script type="module">function o(){const t=document.querySelector("#back-button"),e=sessionStorage.getItem("backUrl");e&&t&&(t.href=e)}document.addEventListener("astro:page-load",o);o();</script> <main id="main-content" class="mx-auto w-full max-w-4xl px-4 pb-12" data-pagefind-body> <h1 class="label_font inline-block text-2xl font-bold text-accent sm:text-3xl" data-astro-transition-scope="astro-fam6wyqg-1"> Cocos Creator学习之旅 </h1> <div class="flex items-center gap-4"> <div class="label_font flex items-end space-x-2 opacity-80 my-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 min-w-[1.375rem]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z" /><path d="M16 3v4" /><path d="M8 3v4" /><path d="M4 11h16" /><path d="M7 14h.013" /><path d="M10.01 14h.005" /><path d="M13.01 14h.005" /><path d="M16.015 14h.005" /><path d="M13.015 17h.005" /><path d="M7.01 17h.005" /><path d="M10.01 17h.005" /></svg> <span class="text-sm sm:text-base">
+Updated:
+</span> <span class="text-sm sm:text-base"> <time datetime="Tue, 27 May 2025 15:15:58 GMT">2025/05/27</time> <span class="sr-only">&nbsp;at&nbsp;</span> <span class="text-nowrap">11:15 PM</span> </span> </div> </div> <article id="article" class="mx-auto prose mt-8 max-w-4xl"> <h2 id="table-of-contents">Table of contents</h2>
+<p></p><details><summary>Open Table of contents</summary><p></p>
+<ul>
+<li><a href="#%E5%89%8D%E5%90%91%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF%E5%92%8C%E5%BB%B6%E8%BF%9F%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF">前向渲染管线和延迟渲染管线</a></li>
+<li><a href="#%E5%BC%80%E5%8F%91cocos%E8%BF%B7%E5%A4%B1%E5%B2%9B%E5%92%8C%E6%AD%BB%E4%BA%A1%E5%9C%B0%E7%89%A2-%E5%9B%9E%E9%A1%BE%E6%94%B6%E8%8E%B7">开发Cocos迷失岛和死亡地牢 回顾收获</a></li>
+<li><a href="#cocos%E7%BC%96%E8%BE%91%E5%99%A8%E7%9B%B8%E5%85%B3">Cocos编辑器相关</a>
+<ul>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E8%8A%82%E7%82%B9">模型节点:</a></li>
+<li><a href="#%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB%E7%BB%84%E4%BB%B6-skeletalanimation-%E7%BB%84%E4%BB%B6">骨骼动画组件 <code>SkeletalAnimation</code> 组件：</a></li>
+<li><a href="#%E7%BB%91%E5%AE%9A%E7%A2%B0%E6%92%9E%E6%A8%A1%E5%9D%97%E8%8A%82%E7%82%B9%E5%88%B0%E9%AA%A8%E9%AA%BC">绑定碰撞模块节点到骨骼：</a></li>
+<li><a href="#%E6%91%84%E5%83%8F%E6%9C%BA%E8%AE%BE%E7%BD%AE">摄像机设置</a></li>
+<li><a href="#%E5%85%89%E7%85%A7%E8%AE%BE%E7%BD%AE%E5%8F%8A%E9%98%B4%E5%BD%B1%E8%AE%BE%E7%BD%AE">光照设置及阴影设置</a></li>
+<li><a href="#%E5%AD%97%E4%BD%93%E7%BC%93%E5%86%B2%E6%A8%A1%E5%BC%8F">字体缓冲模式</a></li>
+<li><a href="#%E5%88%86%E8%BE%A8%E7%8E%87">分辨率</a></li>
+<li><a href="#layout%E7%BB%84%E4%BB%B6%E5%92%8Cwidget%E7%BB%84%E4%BB%B6">Layout组件和Widget组件</a></li>
+<li><a href="#cocos3d%E5%9C%BA%E6%99%AFdrawcall%E4%BC%98%E5%8C%96">Cocos3D场景DrawCall优化</a></li>
+<li><a href="#cocos2d%E7%9A%84drawcall%E4%BC%98%E5%8C%96">Cocos2D的DrawCall优化</a></li>
+<li><a href="#ts%E8%84%9A%E6%9C%AC%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E5%80%BC%E5%B1%9E%E6%80%A7">ts脚本定义枚举值属性：</a></li>
+<li><a href="#3d%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%912d%E6%B8%B8%E6%88%8F%E6%97%B6%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F">3D项目开发2D游戏时需要注意</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8Easset-bundle%E7%9A%84%E5%8A%A0%E8%BD%BD">基于asset bundle的加载</a></li>
+<li><a href="#%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85">项目打包</a></li>
+</ul>
+</li>
+<li><a href="#%E7%9D%80%E8%89%B2%E5%99%A8">着色器</a>
+<ul>
+<li><a href="#%E9%A1%B6%E7%82%B9%E7%9D%80%E8%89%B2%E5%99%A8">顶点着色器</a></li>
+<li><a href="#%E5%AE%9D%E7%9F%B3%E7%89%B9%E6%95%88">宝石特效</a></li>
+<li><a href="#cocos-uniform%E5%9C%A8shader%E4%B8%AD%E5%AE%9A%E4%B9%89%E7%9A%84%E8%A7%84%E8%8C%83">Cocos uniform在shader中定义的规范</a></li>
+<li><a href="#shader%E7%BB%83%E4%B9%A0%E9%A2%98">Shader练习题</a></li>
+</ul>
+</li>
+</ul>
+<p></p></details><p></p>
+<h2 id="前向渲染管线和延迟渲染管线">前向渲染管线和延迟渲染管线</h2>
+<ul>
+<li>前向渲染：基于对几何体和光源的单独计算，当场景中存在大量光源和模型时，性能会有问题</li>
+<li>延迟渲染：先使用gbuffer对几何体构造阶段的数据进行缓冲，再根据gbuffer中顶点的深度信息，剔除没必要的计算</li>
+<li>GBuffer 由一堆 RenderTexture 构成，保存了用于光照计算的信息，如位置、法线、颜色、材质参数等等</li>
+</ul>
+<h2 id="开发cocos迷失岛和死亡地牢-回顾收获">开发Cocos迷失岛和死亡地牢 回顾收获</h2>
+<ol>
+<li>
+<p><code>统一管理数据</code>，使用全局单例的数据中心，来管理游戏数据，使用get/set方法访问数据，数据更新时触发事件，然后通知视图层进行渲染更新。</p>
+</li>
+<li>
+<p>事件驱动视图更新，事件驱动，<code>on</code>/<code>off</code>/<code>emit</code>/<code>once</code>等事件方法，简化视图层渲染更新逻辑。</p>
+</li>
+<li>
+<p>用户操作类事件，推荐使用<strong>代码进行绑定</strong>，而非在编辑器中绑定。</p>
+</li>
+<li>
+<p><code>property</code>装饰器，简化属性绑定，方便代码逻辑优化。</p>
+</li>
+<li>
+<p><code>getCompoent</code>获取节点组件，诸如Button，Sprite，UITransform等，设置对应组件属性（Butto.interactable），调用方法。</p>
+</li>
+<li>
+<p><code>prefab</code>预制体的使用，简化节点复用 instaniate 方法实例化</p>
+</li>
+<li>
+<p>获取父子节点，兄弟节点，<code>find</code>/<code>getChildByName</code>/<code>getChildByPath</code></p>
+</li>
+<li>
+<p><code>resources.load</code>方法加载资源，异步加载，回调中获取资源,统一使用promise封装异步加载</p>
+</li>
+<li>
+<p>重复利用资源放入节点池，避免反复创建节点</p>
+</li>
+<li>
+<p>动画组件<code>animationClip</code>，动画状态机，动画事件回调，可使用<code>director.loadScene</code>方法进行场景切换</p>
+</li>
+<li>
+<p><strong>构建随机棋盘，计算棋盘网格线，计算移动路径，计算是否成功</strong></p>
+</li>
+<li>
+<p>摄像头设置震动状态，利用sin函数计算震动幅度，在update函数中更新摄像机位置</p>
+</li>
+</ol>
+<h2 id="cocos编辑器相关">Cocos编辑器相关</h2>
+<p><code>SkeletalAnimation</code>动画组件，专门用于控制动画的播放和设置。</p>
+<h3 id="模型节点">模型节点:</h3>
+<p>Body模型节点拥有一个蒙皮网格渲染器组件 <code>SkinnedMeshRenderer</code>:</p>
+<ul>
+<li>Materials: 模型使用的材质;</li>
+<li>LightingMap: 光照烘培相关;</li>
+<li>Mesh: 网格对象</li>
+<li>Skeleton: 骨骼信息</li>
+<li>SkinningRoot: 动画组件所在节点;</li>
+</ul>
+<h3 id="骨骼动画组件-skeletalanimation-组件">骨骼动画组件 <code>SkeletalAnimation</code> 组件：</h3>
+<ul>
+<li>预烘焙动画是提前把模型的顶点在动画中不同的位置对应到一张纹理，播放动画时无需计算，直接查寻对应纹理即可</li>
+<li>实时计算: Animation +动画信息Clip +蒙皮网格的节点，计算出来我们节点的位置，交由GPU绘制</li>
+<li>实时计算的有点：表现力更好，节约内存空间，性能计算量大;</li>
+<li>预烘培：性能好，表现力没有那么好，消耗一张纹理空间</li>
+</ul>
+<blockquote>
+<p>可在FBX模型上进行动画剪辑：<br/>
+const anim = this.node.getComponent(SkeletalAnimation);<br/>
+anim包含一系列可用于操作动画的方法，也只是订阅对应的事件。</p>
+</blockquote>
+<h3 id="绑定碰撞模块节点到骨骼">绑定碰撞模块节点到骨骼：</h3>
+<ul>
+<li>需要在SkeletalAnimation节点的sockets字段新增挂点。</li>
+<li>挂点path属性：表示当前挂点要放在哪个骨骼节点下。</li>
+<li>挂点target属性：表示场景中需要挂载的碰撞模块节点。</li>
+</ul>
+<h3 id="摄像机设置">摄像机设置</h3>
+<p>天空盒：在场景节点中打开天空盒开关同时，还需将摄像机的 <code>ClearFlags</code> 设为 <code>SKYBOX</code>。</p>
+<p>摄像机属性：</p>
+<ul>
+<li><code>Visibility</code>
+<ul>
+<li>多选，用于设置需要显示的层级</li>
+<li>每个节点都有Layer属性，通过位运算定义的层级，如Default即 1 &lt;&lt; 30</li>
+<li>Visibility与Layer做与运算，得到1即代表层级显示</li>
+</ul>
+</li>
+<li><code>Priority</code>：场景中值越小的摄像机，拥有绘制权</li>
+<li><code>Projection</code>：
+<ul>
+<li>透视摄像机符合近大远小的规律</li>
+<li>正交摄像机不会根据摄像机与物体的距离，改变物体绘制大小</li>
+</ul>
+</li>
+<li><code>Fov Axis</code>：
+<ul>
+<li>Vertical：相机的视场角是沿着水平方向进行测量和调整的。这意味着你可以控制画面左右两侧能够看到的范围</li>
+<li>Horizontal：设置为垂直时，视场角的测量和调整是沿着垂直方向进行的。这对于需要关注上下范围的场景比较有用</li>
+</ul>
+</li>
+<li><code>Fov</code>：视场角影响摄像机投影屏幕的大小，角度越大，可视范围越大</li>
+<li><code>Near&amp;Far</code>：最近和最远距离，只会显示在这两个值之间的内容</li>
+<li><code>Rect</code>：
+<ul>
+<li>x，y若都设置为0.5，表示绘制从屏幕中心开始</li>
+<li>w，h表示与屏幕的宽高比，默认为1，表示绘制大小与屏幕尺寸保持一致</li>
+</ul>
+</li>
+<li><code>Target Texture</code>：将一张纹理绘制到屏幕，可用于进行摄像机截图操作</li>
+</ul>
+<h3 id="光照设置及阴影设置">光照设置及阴影设置</h3>
+<p>光照需要注意对于设置了<code>受光材质</code>的物体才有效：</p>
+<ul>
+<li>平行光：只对支持光的shader材质才有效，所以要支持阴影的shader才对光有反应</li>
+<li>unlit材质：cocos内置有这类shader，不受光照影响</li>
+</ul>
+<p>阴影的生成：</p>
+<ol>
+<li>打开场景节点的<code>Shadows Enabled</code>开关。</li>
+<li>接受阴影的物体，要打开接受阴影开关。</li>
+<li>被光照的物体，要打开投射阴影开关。</li>
+<li>光照的视锥体影响范围也要注意，超出范围，也可能导致阴影消失。</li>
+</ol>
+<h3 id="字体缓冲模式">字体缓冲模式</h3>
+<p><code>Label</code>文本的缓冲模式：</p>
+<ul>
+<li><code>NONE</code>: 每个文本的内容都会绘制在一个纹理里面，每个label都有这样的纹理</li>
+<li><code>BITMAP</code>: 将文本作为静态图像加入动态图集进行批次合并，但是不能频繁动态修改文本内容。频繁修改反而会导致性能下降，因为批处理的是所有图集</li>
+<li><code>CHAR</code>: 将文本拆分为字符并且把字符纹理缓存到一张字符图集中进行复用，适用于字符内容重复并且频繁更新的文本内容。</li>
+</ul>
+<h3 id="分辨率">分辨率</h3>
+<p>UI系统中分辨率分为:</p>
+<ul>
+<li><code>屏幕像素分辨率</code>：不同设备的屏幕像素点不同</li>
+<li><code>逻辑分辨率</code>：图片资源分辨率与屏显分辨率的比值（其实没啥意义，内部计算会用到的一个比例值），资源在与屏幕尺寸不一致的情况下，如果想要资源继续平铺到全屏幕，可在项目设置中取消适配屏幕宽度和高度，这样资源就会进行缩放和拉伸，例如1920<em>1080在960</em>640的屏幕上显示，显示高度540的内容要在640的范围做平铺。</li>
+</ul>
+<blockquote>
+<p>适配各类屏幕分辨率，项目设置中设置固定高度，使用脚本获取屏幕宽度，然后对组件宽度进行缩放，或设置锚点，始终定义在屏幕的左右两侧。</p>
+</blockquote>
+<h3 id="layout组件和widget组件">Layout组件和Widget组件</h3>
+<p><code>Layout</code>组件：</p>
+<ul>
+<li>NONE，不会对子节点进行自动布局</li>
+<li>HORIZONTAL，横向自动排布子物体</li>
+<li>VERTICAL，垂直自动排布子物体</li>
+<li>GRID, 采用网格方式对子物体自动进行布局
+<ul>
+<li>resizeMode缩放模式，包括：
+<ul>
+<li>NONE，不会对子节点和容器进行大小缩放</li>
+<li>CONTAINER, 对容器的大小进行缩放</li>
+<li>CHILDREN, 对子节点的大小进行缩放</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>Widget</code>组件：</p>
+<ul>
+<li>target属性：指定一个对齐目标，默认为当前父节点</li>
+<li>设置水平和竖向的对齐方式</li>
+</ul>
+<h3 id="cocos3d场景drawcall优化">Cocos3D场景DrawCall优化</h3>
+<ul>
+<li>静态合批：
+<ul>
+<li>调用 <code>BatchingUtility.batchStaticModel</code> 可进行静态合批</li>
+<li>只有满足以下条件的节点才能进行静态合批：
+<ul>
+<li>子节点中只能包含 <code>MeshRenderer</code>；</li>
+<li>子节点下的 <code>MeshRenderer</code> 的 Mesh 的顶点数据结构必须一致；</li>
+<li>子节点下的 <code>MeshRenderer</code> 的材质必须相同。</li>
+</ul>
+</li>
+<li>如果可以，请让美术直接合并一些静态场景的模型，如地图</li>
+</ul>
+</li>
+<li>动态合批
+<ul>
+<li><code>gpu instancing</code>合批：通过 Instancing 的合批适用于绘制大量顶点数据完全相同的动态模型，启用后绘制时会根据材质和顶点数据分组，每组内组织 instanced attributes 信息，然后一次性完成绘制。</li>
+<li>vb合批：动态合批会增加CPU负担，由于CPU侧每帧（或者标记为需要重新合并时）都会进行Mesh合并，所以不适合合并的顶点数过多的情况，否则可能得不偿失。vb合批只要材质相同就会合并成一个模型渲染，因为顶点合并操作导致Cpu占用提升，已移除，</li>
+</ul>
+</li>
+</ul>
+<h3 id="cocos2d的drawcall优化">Cocos2D的DrawCall优化</h3>
+<ul>
+<li>2D相当于3D的一个面片 + 一张纹理，所以可使用<code>gpu instancing</code>合批</li>
+<li>尽可能做到同一张纹理的物体在一起，不要让其他图集打乱合批</li>
+<li>Label = 使用Sprite的shader，使其生成一张纹理
+<ul>
+<li>Label会打断DrawCall</li>
+<li>A1A2A3L1A4: L1会打断DrawCall -&gt; 3个DrawCall</li>
+<li>调整为：A1A2A3A4L1 -&gt; 2个DrawCall</li>
+</ul>
+</li>
+<li>类似节点请放在一起，方便合批</li>
+<li>如果有层级问题，可使用带有深度测试的贴图，使用z坐标进行控制（因为2D摄像机都是正交相机，z值不会影响缩放）</li>
+</ul>
+<h3 id="ts脚本定义枚举值属性">ts脚本定义枚举值属性：</h3>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">import</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {Enum} </span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">from</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &#39;</span><span style="color:#22863A;--shiki-dark:#ECC48D">cc</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">const</span><span style="color:#1976D2;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Position</span><span style="color:#D32F2F;--shiki-dark:#C792EA"> =</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> Enum</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">(</span><span style="color:#24292EFF;--shiki-dark:#C792EA">{</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    left</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &quot;</span><span style="color:#22863A;--shiki-dark:#ECC48D">left</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&quot;</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    right</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &quot;</span><span style="color:#22863A;--shiki-dark:#ECC48D">right</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&quot;</span><span style="color:#212121;--shiki-dark:#C792EA">,</span></span>
+<span class="line"><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    center</span><span style="color:#D32F2F;--shiki-dark:#C792EA">:</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &quot;</span><span style="color:#22863A;--shiki-dark:#ECC48D">center</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&quot;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#C792EA">}</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#82AAFF">@</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">property</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">({ type</span><span style="color:#D32F2F;--shiki-dark:#D6DEEB">:</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> Position })</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">public alignType </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#D6DEEB"> Position</span><span style="color:#24292EFF;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">.</span><span style="color:#24292EFF;--shiki-dark:#BAEBE2">left</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">; </span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// 对齐类型，默认为左对齐</span></span></code></pre>
+<h3 id="3d项目开发2d游戏时需要注意">3D项目开发2D游戏时需要注意</h3>
+<p>在制作卡牌游戏时，操作卡牌的多个节点时，在图层<code>z属性</code>相差不多时，需要注意操作<code>scale属性</code>时，不要忘记同时操作z维度，这个问题导致卡牌的图层出现了一些细微的错位，因为我只设置了x和y，但是其实我也有使用z来控制卡牌的多层级结构。</p>
+<h3 id="基于asset-bundle的加载">基于asset bundle的加载</h3>
+<ul>
+<li>将一些资源划入一个资源包里面 -&gt; 资产包，又叫ab包;</li>
+<li>资源包的划分是给开发者任意来划分;</li>
+<li>每个资源文件夹都可配置为一个资源包; 资源包的名字默认是文件夹的名字;
+我们的资源都在资源包里面;
+步骤1:加载资源包;
+Step2:从资源包里面加载资源:;
+第002节】加载/释放资源包:
+资产管理器:全局单例，类型是资产管理器类型;</li>
+</ul>
+<h3 id="项目打包">项目打包</h3>
+<ol>
+<li>安卓打包</li>
+</ol>
+<ul>
+<li>
+<p>安卓环境搭建:</p>
+<ul>
+<li>安装JDK</li>
+<li>安装Android Studio</li>
+<li>安装SDK NDK</li>
+<li>创建项目专属的密钥签名，注意记录密码和别名</li>
+</ul>
+</li>
+<li>
+<p>游戏项目设置</p>
+<ul>
+<li>横屏游戏记得在项目设置里面勾选适配宽度和高度</li>
+<li>在cocos构建目录选择NDK和SDK路径</li>
+</ul>
+</li>
+<li>
+<p>游戏项目cocos打包</p>
+<ul>
+<li>选择安卓平台</li>
+<li>选择主场景</li>
+<li>选择在上面创建的密钥，设置好密钥库路径/密码/别名/别名密码</li>
+</ul>
+</li>
+<li>
+<p>游戏项目安卓打包</p>
+<ul>
+<li>打开Android Studio</li>
+<li>打开项目文件夹</li>
+<li>等待项目构建完成，获取apk文件</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>微信小游戏打包</li>
+</ol>
+<ul>
+<li>安装微信开发者工具，注意在安全设置打开服务端口，否则cocos无法调起微信小游戏调试器</li>
+<li>申请AppID</li>
+<li>cocos构建配置，填写AppID</li>
+<li>构建微信小游戏</li>
+<li>微信开发者工具注意选择小游戏来打开项目，调试游戏</li>
+</ul>
+<h2 id="着色器">着色器</h2>
+<h3 id="顶点着色器">顶点着色器</h3>
+<p>顶点着色器之后，并不会直接传递给像素着色器，而是会先把顶点着色器输出的东西进行插值、像素化。</p>
+<p>这个过程有一个术语叫：<code>光栅化</code>，三角形经过光栅化后，变成了一个个像素</p>
+<p>除了<code>顶点位置信息</code>，<code>顶点法线</code>、<code>颜色</code>、<code>纹理坐标</code>等都会先经过光栅化，再传递给像素着色器。</p>
+<p>由于所有vert输出的值都会被光栅化，所以顶点着色器传递到像素着色器的法线向量，在使用的时候，记得先normalize，否则会有意想不到的效果。</p>
+<h3 id="宝石特效">宝石特效</h3>
+<p>片元着色器使用varying变量的时候要保证，与顶点着色器要一一对应，有时候不同的pass的顶点着色器，可能对应同一个片元着色器函数。</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="c"><code><span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">// Effect Syntax Guide: https://docs.cocos.com/creator/manual/zh/shader/index.html</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">CCEffect </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">%</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  techniques:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  -</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> name: opaque</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    passes:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    -</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> vert: unlit</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">vs:vert</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      frag: unlit</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">fs:frag</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      properties: </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">&amp;</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">props</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        mainTexture:    { value: white }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        mainColor:      { value: [</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">]</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> editor: { type: color } }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        power:          { value: </span><span style="color:#1976D2;--shiki-dark:#F78C6C">0.5</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">  -</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> name: transparent</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    passes:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">    -</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> vert: unlit</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">vs:vert # builtin header</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      frag: unlit</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">fs:frag</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      blendState:</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">        targets:</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#7FDBCA">        -</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> blend: </span><span style="color:#1976D2;--shiki-dark:#82AAFF">true</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          blendSrc: src_alpha</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          blendDst: one_minus_src_alpha</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          blendSrcAlpha: src_alpha</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">          blendDstAlpha: one_minus_src_alpha</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      properties: </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">props</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">%</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">CCProgram unlit</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">vs </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">%</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  precision highp </span><span style="color:#D32F2F;--shiki-dark:#C792EA">float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/input-standard</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">builtin/uniforms/cc-global</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/local-batch</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/input-standard</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/fog-vs</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/shadow-map-vs</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  in vec4 a_color;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">if</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> HAS_SECOND_UV</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    in vec2 a_texCoord1;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">endif</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec3 v_position;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec3 v_normal;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec3 v_dir;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec3 v_tangent;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec3 v_bitangent;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec2 v_uv;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec2 v_uv1;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  out vec4 v_color;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  vec4 </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">vert</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> ()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    StandardVertInput In;</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    CCVertInput</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(In)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    mat4 matWorld</span><span style="color:#212121;--shiki-dark:#D6DEEB">,</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> matWorldIT;</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    CCGetWorldMatrixFull</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(matWorld</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> matWorldIT)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    vec4 pos </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> matWorld </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#1976D2;--shiki-dark:#C5E478"> In</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">position</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_dir </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> normalize</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">((cc_matView </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> pos)</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">xyz</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_position </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#C5E478"> pos</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">xyz</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_normal </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> normalize</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">((matWorldIT </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> vec4</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#1976D2;--shiki-dark:#C5E478">In</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">normal</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0.0</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">))</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">xyz</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_tangent </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> normalize</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">((matWorld </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> vec4</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#1976D2;--shiki-dark:#C5E478">In</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#1976D2;--shiki-dark:#C5E478">tangent</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">xyz</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0.0</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">))</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">xyz</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_bitangent </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> cross</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(v_normal</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> v_tangent)</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> *</span><span style="color:#1976D2;--shiki-dark:#C5E478"> In</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#1976D2;--shiki-dark:#C5E478">tangent</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">w</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic"> // note the cross order</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_uv </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> a_texCoord;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">if</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> HAS_SECOND_UV</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">      v_uv1 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> a_texCoord1;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">endif</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    v_color </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> a_color;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    CC_TRANSFER_FOG</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(pos)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">    CC_TRANSFER_SHADOW</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(pos)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    return</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> cc_matProj </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> (cc_matView </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> matWorld) </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#1976D2;--shiki-dark:#C5E478"> In</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">position</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">%</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">CCProgram unlit</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">-</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">fs </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">%</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">{</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  precision highp </span><span style="color:#D32F2F;--shiki-dark:#C792EA">float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/output</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  #</span><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">include</span><span style="color:#22863A;--shiki-dark:#D9F5DD"> &lt;</span><span style="color:#22863A;--shiki-dark:#ECC48D">legacy/fog-fs</span><span style="color:#22863A;--shiki-dark:#D9F5DD">&gt;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  in vec2 v_uv;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  in vec3 v_position;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  in vec3 v_normal;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  in vec3 v_dir;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  uniform sampler2D mainTexture;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  uniform Constant {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    vec4 mainColor;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> power;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  };</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  vec4 </span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">frag</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> ()</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> {</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    vec4 col </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> mainColor;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">    float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> stren </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> dot</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(v_dir</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> v_normal)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">     // 通过单位视向量与单位法向量获取夹角cos值</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">    col </span><span style="color:#D32F2F;--shiki-dark:#C792EA">*=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> pow</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic">abs</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(stren)</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> power)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">          // abs取绝对值，通过可控参数，控制强度</span></span>
+<span class="line"><span style="color:#D32F2F;font-style:inherit;--shiki-dark:#C792EA;--shiki-dark-font-style:italic">    return</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> CCFragOutput</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(col)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  }</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">%</span></span>
+<span class="line"></span></code></pre>
+<h3 id="cocos-uniform在shader中定义的规范">Cocos uniform在shader中定义的规范</h3>
+<p>Cocos Shader规定，所有非 sampler 类型的 uniform 都应以 UBO（Uniform Buffer Object/Uniform Block）形式声明。</p>
+<ul>
+<li>不应出现 vec3 成员；</li>
+<li>对数组类型成员，每个元素 size 不能小于 vec4；</li>
+<li>不允许任何会引入 padding 的成员声明顺序。</li>
+</ul>
+<p>所有成员实际的偏移量（即成员在整体结构中的位置偏离起始位置的距离），是以自身所占用字节数为单位进行对齐的。例如，若一个成员占 4 个字节，那么它在 UBO 中的偏移量会是 4 的倍数，这样做通常是为了提高数据访问效率和内存管理的合理性，让硬件在读取数据时能更高效地定位和处理各个成员。
+对于 32 位处理器，字长为 8 字节。如果一个 8字节的变量未对齐存储，可能需要两次内存访问才能读取完整的变量值，而对齐存储时只需一次内存访问。</p>
+<p><strong>UBO对内存管理的优化：</strong></p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="c"><code><span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">uniform IncorrectUBOOrder {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> f1_1;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">     // offset 0, length 4 (aligned to 4 bytes)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  vec2 v2;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">        // offset 8, length 8 (aligned to 8 bytes) [IMPLICIT PADDING!]</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> f1_2;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">     // offset 16, length 4 (aligned to 4 bytes)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">                // total of 32 bytes</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">uniform CorrectUBOOrder {</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> f1_1;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">     // offset 0, length 4 (aligned to 4 bytes)</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> f1_2;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">     // offset 4, length 4 (aligned to 4 bytes)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  vec2 v2;</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">        // offset 8, length 8 (aligned to 8 bytes)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">};</span><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">                // total of 16 bytes</span></span>
+<span class="line"></span></code></pre>
+<p><code>aligned to 4 bytes</code> 意味着数据项的起始地址必须是 4 的倍数，<code>aligned to 8 bytes</code> 则表示起始地址必须是 8 的倍数。vec2 v2前面是两个四字节数，刚好是从8开始的，所以后一种定义方式更好</p>
+<p><strong>f1_1 和 f1_2 对齐到相同位置的原因</strong></p>
+<ul>
+<li>float 类型通常占用 4 个字节。根据字节对齐规则，它的偏移量（offset）为 0，并且是按 4 字节对齐的。这是因为在 UBO 中，它是第一个成员，所以从偏移量 0 开始存储，而 0 是 4 的倍数，满足 4 字节对齐的要求。</li>
+<li>同样是 float 类型，占用 4 个字节。由于 f1_1 已经占用了 4 个字节，所以 f1_2 的起始偏移量为 4。4 也是 4 的倍数，因此 f1_2 也满足 4 字节对齐的要求。</li>
+</ul>
+<h3 id="shader练习题">Shader练习题</h3>
+<p>要求横向分三块，0-0.25为粉色，0.25-0.75为黑色，0.75-1为粉色。代码如下，注释代码是我写的，标准答案更简洁：</p>
+<pre class="astro-code astro-code-themes min-light night-owl" style="background-color:#ffffff;--shiki-dark-bg:#011627;color:#24292eff;--shiki-dark:#d6deeb;overflow-x:auto;white-space:pre-wrap;word-wrap:break-word" tabindex="0" data-language="c"><code><span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">uniform vec2 iResolution;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">void</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> main</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">() {</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // Normalized pixel coordinates (from 0 to 1)</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  vec2 uv </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#C5E478"> gl_FragCoord</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">xy</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> /</span><span style="color:#1976D2;--shiki-dark:#C5E478"> iResolution</span><span style="color:#212121;--shiki-dark:#D6DEEB">.</span><span style="color:#24292EFF;--shiki-dark:#C5E478">xy</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  vec3 color </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> vec3</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">1.0</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0.3</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 0.3</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // vec3 color = vec3(step(0.25, abs(uv.x-0.5)), step(0.25, abs(uv.x-0.5)), step(0.25, abs(uv.x-0.5)));</span></span>
+<span class="line"><span style="color:#C2C3C5;font-style:inherit;--shiki-dark:#637777;--shiki-dark-font-style:italic">  // color = vec3(min(color.x, 1.0),min(color.x, 0.3),min(color.x, 0.3));</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> t1 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1.0</span><span style="color:#D32F2F;--shiki-dark:#7FDBCA"> -</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> step</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">0.25</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#C5E478"> uv</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">x</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#D32F2F;--shiki-dark:#C792EA">  float</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB"> t2 </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> step</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(</span><span style="color:#1976D2;--shiki-dark:#F78C6C">0.75</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#C5E478"> uv</span><span style="color:#212121;--shiki-dark:#82AAFF">.</span><span style="color:#6F42C1;--shiki-dark:#C5E478">x</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">  gl_FragColor </span><span style="color:#D32F2F;--shiki-dark:#C792EA">=</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> vec4</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(color </span><span style="color:#D32F2F;--shiki-dark:#7FDBCA">*</span><span style="color:#6F42C1;font-style:inherit;--shiki-dark:#82AAFF;--shiki-dark-font-style:italic"> max</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">(t1</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#6F42C1;--shiki-dark:#82AAFF"> t2)</span><span style="color:#212121;--shiki-dark:#82AAFF">,</span><span style="color:#1976D2;--shiki-dark:#F78C6C"> 1.0</span><span style="color:#6F42C1;--shiki-dark:#82AAFF">)</span><span style="color:#24292EFF;--shiki-dark:#D6DEEB">;</span></span>
+<span class="line"><span style="color:#24292EFF;--shiki-dark:#D6DEEB">}</span></span></code></pre> </article> <hr class="my-8 border-dashed"> <ul class="mt-4 mb-8 sm:my-8"> <li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/cocos/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-2"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-2.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Cocos</span> </a> </li><li class="group inline-block group-hover:cursor-pointer my-1 underline-offset-4"> <a href="/tags/typescript/" class="relative pr-2 text-lg underline decoration-dashed group-hover:-top-0.5 group-hover:text-accent focus-visible:p-1 text-sm" data-astro-transition-scope="astro-36ssibgs-3"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block opacity-80 -mr-2.5 size-4"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 9l14 0" /><path d="M5 15l14 0" /><path d="M11 4l-4 16" /><path d="M17 4l-4 16" /></svg>
+&nbsp;<span>Typescript</span> </a> </li> </ul> <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end sm:gap-4"> <div class="flex flex-col flex-wrap items-center justify-center gap-1 sm:items-start"> <span class="italic">Share this post on:</span> <div class="text-center"> <a href="https://wa.me/?text=https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via WhatsApp"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" /><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" /></svg> <span class="sr-only">Share this post via WhatsApp</span> </a><a href="https://www.facebook.com/sharer.php?u=https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Facebook"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg> <span class="sr-only">Share this post on Facebook</span> </a><a href="https://x.com/intent/post?url=https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on X"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg> <span class="sr-only">Share this post on X</span> </a><a href="https://t.me/share/url?url=https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via Telegram"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" /></svg> <span class="sr-only">Share this post via Telegram</span> </a><a href="https://pinterest.com/pin/create/button/?url=https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post on Pinterest"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 20l4 -9" /><path d="M10.7 14c.437 1.263 1.43 2 2.55 2c2.071 0 3.75 -1.554 3.75 -4a5 5 0 1 0 -9.7 1.7" /><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></svg> <span class="sr-only">Share this post on Pinterest</span> </a><a href="mailto:?subject=See%20this%20post&#38;body=https://astro-paper.pages.dev/posts/next/cocos/cocos_summary/" class="group inline-block hover:text-accent scale-90 p-2 hover:rotate-6 sm:p-1" title="Share this post via email"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Share this post via email</span> </a> </div> </div> <button id="back-to-top" class="focus-outline fixed right-8 bottom-10 py-1 text-center whitespace-nowrap text-accent hover:opacity-75 md:right-20"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="scale-180 rotate-90 transform-[scale(1.2)] rounded-[3px] border-1 bg-white stroke-black stroke-1 hover:border-(--accent) hover:stroke-(--accent) md:transform-[scale(1.4)]"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <!-- <span>Back to Top</span> --> </button> </div> <hr class="my-6 border-dashed"> <!-- Previous/Next Post Buttons --> <div data-pagefind-ignore class="grid grid-cols-1 gap-6 sm:grid-cols-2"> <a href="/posts/next/javascript/frontend_related" class="flex w-full gap-1 hover:opacity-75"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M15 6l-6 6l6 6" /></svg> <div> <span>Previous Post</span> <div class="text-sm text-accent/85">前端相关的各类知识汇总</div> </div> </a> <a href="/posts/next/tailwindcss/tailwindcss_usage" class="flex w-full justify-end gap-1 text-right hover:opacity-75 sm:col-start-2"> <div> <span>Next Post</span> <div class="text-sm text-accent/85">Tailwindcss之用法</div> </div> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-none"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M9 6l6 6l-6 6" /></svg> </a> </div> </main> <footer class="w-full mt-auto"> <div class="max-w-4xl mx-auto px-0"> <hr class="border-border" aria-hidden="true"> </div> <div class="flex flex-col items-center justify-between py-6 sm:flex-row-reverse sm:py-4"> <div class="flex-wrap justify-center gap-1 flex"> <a href="https://www.linkedin.com/in/%E6%A1%82%E8%B0%86-%E6%B6%82-a685692aa/" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="ATTACKI on LinkedIn"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M8 11v5" /><path d="M8 8v.01" /><path d="M12 16v-5" /><path d="M16 16v-3a2 2 0 1 0 -4 0" /><path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" /></svg> <span class="sr-only">ATTACKI on LinkedIn</span> </a><a href="mailto:17671723957@163.com" class="group inline-block hover:text-accent p-2 hover:rotate-6 sm:p-1" title="Send an email to ATTACKI"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg> <span class="sr-only">Send an email to ATTACKI</span> </a> </div> <div class="inline-flex label_font  items-center"> <a href="/" class="py-1 text-xl leading-7 whitespace-nowrap sm:static"> ATTACKI </a> <a target="_blank" href="/rss.xml" class="ml-2 box-content inline-flex h-[24px] w-[24px] items-center sm:static" aria-label="rss feed" title="RSS Feed"> <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-acent scale-180 stroke-2"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M4 4a16 16 0 0 1 16 16" /><path d="M4 11a9 9 0 0 1 9 9" /></svg> <span class="sr-only">RSS Feed</span> </a> <span>2025</span> </div> </div> </footer>  </body></html> <script data-astro-rerun>
+  /** Create a progress indicator
+   *  at the top */
+  function createProgressBar() {
+    // Create the main container div
+    const progressContainer = document.createElement("div");
+    progressContainer.className =
+      "progress-container fixed top-0 z-10 h-1 w-full bg-background";
+
+    // Create the progress bar div
+    const progressBar = document.createElement("div");
+    progressBar.className = "progress-bar h-1 w-0 bg-accent";
+    progressBar.id = "myBar";
+
+    // Append the progress bar to the progress container
+    progressContainer.appendChild(progressBar);
+
+    // Append the progress container to the document body or any other desired parent element
+    document.body.appendChild(progressContainer);
+  }
+  createProgressBar();
+
+  /** Update the progress bar
+   *  when user scrolls */
+  function updateScrollProgress() {
+    controlBacktopDisplay(
+      document.body.scrollTop || document.documentElement.scrollTop
+    );
+    document.addEventListener("scroll", () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      if (document) {
+        const myBar = document.getElementById("myBar");
+        if (myBar) {
+          myBar.style.width = scrolled + "%";
+        }
+      }
+      controlBacktopDisplay(scrolled);
+    });
+  }
+
+  function controlBacktopDisplay(scrolled) {
+    const backTop = document.querySelector("#back-to-top");
+    if (scrolled === 0) {
+      backTop.style.display = "none";
+    } else {
+      backTop.style.display = "block";
+    }
+  }
+
+  updateScrollProgress();
+
+  /** Attaches links to headings in the document,
+   *  allowing sharing of sections easily */
+  function addHeadingLinks() {
+    const headings = Array.from(
+      document.querySelectorAll("h2, h3, h4, h5, h6")
+    );
+    for (const heading of headings) {
+      heading.classList.add("group");
+      const link = document.createElement("a");
+      link.className =
+        "heading-link ml-2 opacity-0 group-hover:opacity-100 focus:opacity-100";
+      link.href = "#" + heading.id;
+
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.innerText = "#";
+      link.appendChild(span);
+      heading.appendChild(link);
+    }
+  }
+  addHeadingLinks();
+
+  /** Attaches copy buttons to code blocks in the document,
+   * allowing users to copy code easily. */
+  function attachCopyButtons() {
+    const copyButtonLabel = "Copy";
+    const codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+    for (const codeBlock of codeBlocks) {
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "relative";
+
+      const copyButton = document.createElement("button");
+      copyButton.className =
+        "copy-code absolute right-3 top-3 rounded-xs bg-muted px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.innerHTML = copyButtonLabel;
+      codeBlock.setAttribute("tabindex", "0");
+      codeBlock.appendChild(copyButton);
+
+      // wrap codebock with relative parent element
+      codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
+      wrapper.appendChild(codeBlock);
+
+      copyButton.addEventListener("click", async () => {
+        await copyCode(codeBlock, copyButton);
+      });
+    }
+
+    async function copyCode(block, button) {
+      const code = block.querySelector("code");
+      const text = code?.innerText;
+
+      await navigator.clipboard.writeText(text ?? "");
+
+      // visual feedback that task is completed
+      button.innerText = "Copied";
+
+      setTimeout(() => {
+        button.innerText = copyButtonLabel;
+      }, 700);
+    }
+  }
+  attachCopyButtons();
+
+  /** Scrolls the document to the top when
+   * the "Back to Top" button is clicked. */
+  function backToTop() {
+    document.querySelector("#back-to-top")?.addEventListener("click", () => {
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+  }
+  backToTop();
+
+  /* Go to page start after page swap */
+  document.addEventListener("astro:after-swap", () =>
+    window.scrollTo({ left: 0, top: 0, behavior: "instant" })
+  );
+</script>

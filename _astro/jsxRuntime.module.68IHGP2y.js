@@ -1,0 +1,1 @@
+import{l}from"./preact.module.CtyjANje.js";var c=0;function s(u,_,f,p,i,v){_||(_={});var e,r,o=_;if("ref"in o)for(r in o={},_)r=="ref"?e=_[r]:o[r]=_[r];var n={type:u,props:o,key:f,ref:e,__k:null,__:null,__b:0,__e:null,__c:null,constructor:void 0,__v:--c,__i:-1,__u:0,__source:i,__self:v};return l.vnode&&l.vnode(n),n}export{s as u};
